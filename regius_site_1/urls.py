@@ -19,5 +19,7 @@ from accounts.views import login_page
 
 urlpatterns = [
     path('', login_page),
+    path('accounts/', include("accounts.urls")),
+    path('overview/', include("overview.urls")),
     path('admin/', admin.site.urls),
 ]

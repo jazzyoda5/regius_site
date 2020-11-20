@@ -17,29 +17,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="586ddca4-e520-4775-bfd9-609a9e50e8a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/accounts/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/static/accounts/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/regius_site_1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/regius_site_1/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regius_site_1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/regius_site_1/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="d6a00c68-406e-4802-a992-77034f32994d" />
   <component name="ProjectId" id="1kWcthKS2LSAckq0hEcTtSGqXhQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,7 +67,7 @@
       <updated>1605820005395</updated>
       <workItem from="1605820032598" duration="9000" />
       <workItem from="1605822328272" duration="36000" />
-      <workItem from="1605869760731" duration="5724000" />
+      <workItem from="1605869760731" duration="8576000" />
     </task>
     <servers />
   </component>
