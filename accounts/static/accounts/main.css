@@ -17,14 +17,15 @@ background-image: linear-gradient(62deg, #ff510c 0%, #F7CE68 100%);
     max-width: 600px;
     max-height: 400px;
     align-items: center;
-    background-color: white;
+    background-color: #303030;
+    color: #ffffff;
     position: absolute;
     margin: 0;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    border-radius: 10px;
+    border-radius: 30px;
 }
 .login form {
     width: 80% !important;
@@ -33,11 +34,14 @@ background-image: linear-gradient(62deg, #ff510c 0%, #F7CE68 100%);
 .login input {
     border-radius: 15px;
 }
+.login input {
+
+}
 .login button {
     border-radius: 20px;
     width: 70%;
     height: 50px;
-    background-color: #b84c21;
+    background-color: #db4a12;
     border: none;
     margin-top: 5%;
     margin-left: 15%;
@@ -46,10 +50,49 @@ background-image: linear-gradient(62deg, #ff510c 0%, #F7CE68 100%);
 }
 .login button:hover {
     border-style: solid;
-    border-color: #b84c21;
-    background-color: #ffb799;
-    color: #b84c21;
+    border-color: #db4a12;
+    background-color: #f3cfc0;
+    color: #db4a12;
+}
+.login button:active {
+    border-style: solid;
+    border-color: #ffb799;
+    background-color: #b84c21;
+    color: #ffb799;
+}
+.login button:focus {
+    border-style: solid;
+    border-color: #ffb799;
+    background-color: #b84c21;
+    color: #ffb799;
+}
+.login a {
+    color: orangered;
 }
 .login a:hover {
     text-decoration: none;
+    color: #a22c00;
+}
+input:focus {
+    outline-color: red;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+input:focus {
+  border-color: rgb(255, 99, 25);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(255, 122, 59);
+  outline: 0 none;
 }
