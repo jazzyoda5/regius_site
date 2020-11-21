@@ -1,35 +1,35 @@
 {% extends "overview/main.html" %} {% block content %}
 
-<form action="/accounts/adduser/2/" method="post">
-<div class="form-title">
-  <h4>REGISTRACIJA NOVEGA UPORABNIKA</h4>
-</div>
+<form action="/accounts/adduser/submit/" method="post"> {% csrf_token %}
+  <div class="form-title">
+    <h4>REGISTRACIJA NOVEGA UPORABNIKA</h4>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Ime</label>
-      <input type="text" class="form-control" id="inputEmail4" />
+      <label for="f_name">Ime</label>
+      <input type="text" class="form-control" id="f_name" name="f_name" />
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Priimek</label>
-      <input type="text" class="form-control" id="inputPassword4" />
+      <label for="l_name">Priimek</label>
+      <input type="text" class="form-control" id="l_name" name="l_name" />
     </div>
   </div>
   <div class="form-group">
-    <label for="inputAddress">Uporabniško ime</label>
-    <input type="text" class="form-control" id="inputAddress" />
+    <label for="username">Uporabniško ime</label>
+    <input type="text" class="form-control" id="username" name="username" />
   </div>
   <div class="form-group">
-    <label for="inputAddress">Email</label>
-    <input type="email" class="form-control" id="inputAddress" />
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" />
   </div>
   <div class="form-group">
-    <label for="inputAddress">Geslo</label>
-    <input type="password" class="form-control" id="inputAddress" />
+    <label for="password">Geslo</label>
+    <input type="password" class="form-control" id="password" name="password" />
   </div>
   <div class="form-group">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck" />
-      <label class="form-check-label" for="gridCheck">
+      <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" />
+      <label class="form-check-label" for="is_admin">
         Nov uporabnik je administrator
       </label>
     </div>

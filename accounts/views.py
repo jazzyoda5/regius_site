@@ -31,3 +31,10 @@ def submit_logout(request):
 @login_required
 def add_user_page(request):
     return render(request, 'accounts/add_user.html', {'add_user_page': True})
+
+
+@login_required
+def add_user(request):
+    username = request.POST['username']
+    is_admin = request.POST ['is_admin']
+    return print(is_admin)
