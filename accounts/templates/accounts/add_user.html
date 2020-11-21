@@ -1,0 +1,39 @@
+{% extends "overview/main.html" %} {% block content %}
+
+<form action="/accounts/adduser/2/" method="post">
+<div class="form-title">
+  <h4>REGISTRACIJA NOVEGA UPORABNIKA</h4>
+</div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Ime</label>
+      <input type="text" class="form-control" id="inputEmail4" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Priimek</label>
+      <input type="text" class="form-control" id="inputPassword4" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Uporabniško ime</label>
+    <input type="text" class="form-control" id="inputAddress" />
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Email</label>
+    <input type="email" class="form-control" id="inputAddress" />
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Geslo</label>
+    <input type="password" class="form-control" id="inputAddress" />
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck" />
+      <label class="form-check-label" for="gridCheck">
+        Nov uporabnik je administrator
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Registriraj</button>
+</form>
+{% endblock %}

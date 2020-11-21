@@ -18,11 +18,12 @@
   <component name="ChangeListManager">
     <list default="true" id="586ddca4-e520-4775-bfd9-609a9e50e8a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/static/accounts/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/static/accounts/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regius_site_1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/regius_site_1/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regius_site_1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/regius_site_1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overview/static/overview/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/overview/static/overview/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overview/templates/overview/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/overview/templates/overview/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overview/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/overview/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +69,7 @@
       <workItem from="1605820032598" duration="9000" />
       <workItem from="1605822328272" duration="36000" />
       <workItem from="1605869760731" duration="8576000" />
+      <workItem from="1605912462061" duration="3645000" />
     </task>
     <servers />
   </component>
@@ -97,5 +99,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1772" y="276" width="586" height="548" key="find.popup" timestamp="1605914384887">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1772" y="276" width="586" height="548" key="find.popup/1440.23.1920.1057/0.23.1440.820@1440.23.1920.1057" timestamp="1605914384887" />
   </component>
 </project>

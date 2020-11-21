@@ -1,0 +1,42 @@
+body {
+    background-color: #e4e4e4;
+}
+.nav-bar-div {
+    background-color: #303030;
+}
+nav {
+    display: flex;
+    margin: auto;
+    max-width: 1400px;
+}
+a {
+    color: #ffffff;
+}
+a:hover {
+    color: #c85017;
+}
+h1 {
+    color: #c85017;
+}
+.dropdown button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4f4f4f;
+    border: none;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+.dropdown button:hover {
+    color: #c85017;
+}
+.dropdown a {
+}
+.dropdown a:hover {
+    color: #c85017;
+}
+hr {
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
