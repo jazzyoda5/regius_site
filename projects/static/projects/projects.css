@@ -1,0 +1,59 @@
+.projects-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.projects-nav a {
+    color: black;
+}
+.projects-nav a:hover {
+    color: #c85017;
+}
+.form {
+    display: flex;
+    margin: auto;
+    max-width: 850px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+}
+.form form {
+    width: 80%;
+    margin: auto;
+}
+.btn-primary {
+    background-color: #c85017;
+    border: none !important;
+    box-shadow: none !important;
+}
+.btn-primary:hover {
+    background-color: #a22c00;
+}
+.btn-primary:focus {
+    background-color: #812200;
+}
+.date_field_wrapper {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px;
+}
+.date_field_wrapper select {
+    margin-left: 20px;
+}
+.date_field_wrapper label {
+    margin-top: 5px;
+}
+.client_field_wrapper {
+    display: inline-flex;
+    width: 100%;
+}
+.client_field_wrapper a {
+    color: #c85017;
+    font-size: 40px;
+    margin-left: 20px;
+    margin-top: -15px;
+}
+.client_field_wrapper a:hover {
+    color: #a22c00;
+}

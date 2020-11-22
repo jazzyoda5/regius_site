@@ -29,6 +29,7 @@
       href="{% static 'accounts/add_user.css' %}"
     />
     {% endif %}
+    {% block add_styles %} {% endblock %}
   </head>
   <body>
     <div class="nav-bar-div">
@@ -39,7 +40,7 @@
             <a class="nav-link active" href="/overview/">Domov</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Projekti</a>
+            <a class="nav-link" href="/projects/">Projekti</a>
           </li>
           <li>
             <div class="dropdown">

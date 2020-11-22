@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'overview.apps.OverviewConfig'
+    'overview.apps.OverviewConfig',
+    'projects.apps.ProjectsConfig'
 ]
 
 MIDDLEWARE = [
@@ -110,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sl'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT+1'
 
 USE_I18N = True
 

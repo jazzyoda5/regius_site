@@ -4,21 +4,21 @@ body {
 .nav-bar-div {
     background-color: #303030;
 }
-nav {
+.nav-bar-div nav {
     display: flex;
     margin: auto;
     max-width: 1400px;
 }
-a {
+.nav-bar-div a {
     color: #ffffff;
 }
-a:hover {
+.nav-bar-div a:hover {
     color: #c85017;
 }
-h1 {
+.nav-bar-div h1 {
     color: #c85017;
 }
-.dropdown button {
+.nav-bar-div .dropdown button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +31,7 @@ h1 {
     color: #c85017;
 }
 .dropdown a {
+    color: black;
 }
 .dropdown a:hover {
     color: #c85017;
@@ -38,7 +39,7 @@ h1 {
 .dropdown a:focus {
     background-color: gray;
 }
-hr {
+.nav-bar-div hr {
     width: 80%;
     margin-top: 5px;
     margin-bottom: 5px;
