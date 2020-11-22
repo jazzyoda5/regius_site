@@ -1,0 +1,47 @@
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+class SignupForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'is_staff', 'password2']:
+            self.fields[fieldname].help_text = None
+
+        self.fields['password1'].widget = forms.PasswordInput(
+            {'class': 'form-control'})
+        self.fields['password2'].widget = forms.PasswordInput(
+            {'class': 'form-control'})
+        self.fields['email'].widget = forms.EmailInput(
+            {'class': 'form-control'})
+        self.fields['is_staff'].widget = forms.CheckboxInput(
+            {'class': 'form-check-input'})
+        self.fields['first_name'].label = 'Ime'
+        self.fields['last_name'].label = 'Priimek'
+        self.fields['username'].label = 'Uporabniško ime'
+        self.fields['email'].label = 'Email'
+        self.fields['is_staff'].label = 'Uporabnik bo administrator'
+        self.fields['password1'].label = 'Geslo'
+        self.fields['password2'].label = 'Ponovi geslo'
+        self.fields['password1'].help_text = """ 
+        <ul class="password-help_text">
+        <li>
+        <p>Geslo mora biti dolgo vsaj 8 znakov</p>
+        </li>
+        <li>
+        <p>Geslo mora vsebovati črke in številke</p>
+        </li>
+        </ul>
+        """
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username',
+                  'email', 'password1', 'password2', 'is_staff']
+        widgets = {
+            'first_name': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+            'last_name': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+            'username': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+        }

@@ -35,6 +35,9 @@ h1 {
 .dropdown a:hover {
     color: #c85017;
 }
+.dropdown a:focus {
+    background-color: gray;
+}
 hr {
     width: 80%;
     margin-top: 5px;

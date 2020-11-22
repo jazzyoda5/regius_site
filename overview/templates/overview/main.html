@@ -69,9 +69,11 @@
                 class="dropdown-menu dropdown-menu-right"
                 aria-labelledby="dropdownMenuButton"
               >
+                {% if user.is_staff %}
                 <a class="dropdown-item" href="/accounts/adduser/"
                   >Nov uporabnik</a
                 >
+                {% endif %}
                 <a class="dropdown-item" href="#">Nastavitve računa</a>
                 <hr />
                 <a class="dropdown-item" href="/accounts/submitlogout/"
