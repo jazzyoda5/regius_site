@@ -1,0 +1,32 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/projects_overview.css' %}"
+/>{% endblock %} {% block content %}
+<div class="projects-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="/projekti/">Vsi projekti</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/novprojekt/">Nov projekt</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/novastranka/">Nova stranka</a>
+    </li>
+  </ul>
+</div>
+<div class="body">
+  <div class="head">
+    <h6>Ime projekta</h6>
+    <h6>Stranka</h6>
+  </div>
+  <hr>
+  {% for project in projects%}
+  <div class="project">
+    <a class="nav-link" href="/projekti/{{ project.id }}">{{ project.project_name }}</a>
+    <p>{{ project.client}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

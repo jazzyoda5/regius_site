@@ -1,49 +1,48 @@
 {% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
   rel="stylesheet"
   type="text/css"
-  href="{% static 'projects/projects.css' %}"
+  href="{% static 'projects/add_project.css' %}"
 />{% endblock %} {% block content %}
-
 <div class="projects-nav">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="#">Vsi projekti</a>
+      <a class="nav-link" href="/projekti/">Vsi projekti</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="#">Nov projekt</a>
+      <a class="nav-link active" href="/projekti/novprojekt/">Nov projekt</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Dokumenti</a>
+      <a class="nav-link" href="/projekti/novastranka/">Nova stranka</a>
     </li>
   </ul>
 </div>
 <div class="form">
-  <form method="POST">
-  {% for field in form %}
-    {% if field.label == 'Od' or field.label == 'Do'%}
-    <div class="date_field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
-      {{ field.label_tag }}
-      {{ field }}
-    </div>
-    {% elif field.label == 'Stranka'%}
-    {{ field.label_tag }}
-    <div class="client_field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
-      {{ field }}
-        <a class="icon-large" href="#">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg>
-        </a>
-    </div>
-    {% else %}
-  <div class="field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+  <form method="POST"> {% csrf_token %}
+    {% for field in form %}
+        {% if field.label == 'Od' or field.label == 'Do'%}
+            <div class="date_field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% elif field.label == 'Stranka'%}
+            {{ field.label_tag }}
+            <div class="client_field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                {{ field }}
+                <a class="icon-large" href="/projekti/novastranka/">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </a>
+            </div>
+            {% else %}
+                <div class="field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
 
-  {{ field.label_tag }}
-  {{ field }}
-  </div>
-  {% endif %}
-  {% endfor %}
-  <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+        {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
   </form>
 </div>
 

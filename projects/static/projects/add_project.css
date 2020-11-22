@@ -16,22 +16,44 @@
     max-width: 850px;
     background-color: white;
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 .form form {
     width: 80%;
     margin: auto;
 }
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+textarea:focus,
+.form-control:focus {   
+  box-shadow: none !important;
+  border-color: #c85017;
+}
 .btn-primary {
     background-color: #c85017;
-    border: none !important;
+    border-color: #c85017;
+    float: right;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: #a22c00 !important;
+    border-color: #c85017 !important;
     box-shadow: none !important;
-}
-.btn-primary:hover {
-    background-color: #a22c00;
-}
-.btn-primary:focus {
-    background-color: #812200;
+    outline: 0 none;
 }
 .date_field_wrapper {
     display: inline-flex;

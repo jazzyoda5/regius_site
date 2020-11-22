@@ -24,7 +24,7 @@ def submit_login(request):
         error = True
         return render(request, 'accounts/main.html', { 'error': error })
 
-
+@login_required
 def submit_logout(request):
     user = request.user
     logout(request)
@@ -40,7 +40,7 @@ def add_user_page(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Yes')
+            return HttpResponseRedirect('/overview/')
         return HttpResponse('No')
 
 @login_required

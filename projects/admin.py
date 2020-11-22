@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Project)
 admin.site.register(ProjectAdress)
 admin.site.register(Client)
+admin.site.register(ProjectContactInfo)

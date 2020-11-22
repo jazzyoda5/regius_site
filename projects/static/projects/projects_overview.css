@@ -1,0 +1,46 @@
+.projects-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.projects-nav a {
+    color: black;
+}
+.projects-nav a:hover {
+    color: #c85017;
+}
+.body {
+    margin: auto;
+    max-width: 850px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+.project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 8px;
+}
+.project p {
+    margin: 0;
+    color: black;
+}
+.project a {
+    margin-left: -15px;
+    color: #e9692d;
+}
+.project a:hover {
+    color: #c85017;
+}
+.head {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}

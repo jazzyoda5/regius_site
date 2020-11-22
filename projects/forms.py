@@ -14,9 +14,9 @@ class NewProjectForm(forms.ModelForm):
             'contractor': forms.Select(attrs={'class': 'form-control'}),
             'project_name': forms.TextInput(attrs={'class': 'form-control'}),
             'contract_num': forms.TextInput(attrs={'class': 'form-control'}),
-            'contract_value': forms.TextInput(attrs={'class': 'form-control'}),
+            'contract_value': forms.NumberInput(attrs={'class': 'form-control', 'step': '0,25'}),
             'contract_num': forms.TextInput(attrs={'class': 'form-control'}),
-            'hourly_rate': forms.TextInput(attrs={'class': 'form-control'}),
+            'hourly_rate': forms.NumberInput(attrs={'class': 'form-control', 'step': '0,25'}),
         }
         labels = {
             'client': 'Stranka',
@@ -24,4 +24,19 @@ class NewProjectForm(forms.ModelForm):
         }
 
 
-# class NewClientForm(forms.class Form(forms.ModelForm):
+class NewClientForm(forms.ModelForm):
+
+    class Meta:
+        model = Client
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'street': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+            'tax_num': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'name': 'Ime podjetja'
+        }
