@@ -1,0 +1,34 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/add_project.css' %}"
+/>{% endblock %} {% block content %}
+<div class="projects-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/">Vsi projekti</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="/projekti/novprojekt/">Nov projekt</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/novastranka/">Nova stranka</a>
+    </li>
+  </ul>
+</div>
+<div class="form">
+  <form method="POST"> {% csrf_token %}
+    {% for field in form %}
+
+        <div class="field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+  </form>
+</div>
+
+{% endblock %}

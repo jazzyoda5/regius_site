@@ -79,3 +79,6 @@ textarea:focus,
 .client_field_wrapper a:hover {
     color: #a22c00;
 }
+.form h4 {
+    margin-bottom: 30px;
+}

@@ -1,0 +1,70 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/project_details.css' %}"
+/>{% endblock %} {% block content %}
+<div class="project_details">
+  <div class="project_name">
+    <h3>{{ project.project_name }}</h3>
+  </div>
+  <div class="data">
+    <div class="main_data">
+      <ul>
+        <li>
+          <div class="field_name">
+            <p>Izvajalec</p>
+          </div>
+          <div class="field_data">
+            <p>{{ project.contractor }} d. o. o.</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Naročnik</p>
+          </div>
+          <div class="field_data">
+            <a href="#">{{ project.client }}</a>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Številka pogodbe</p>
+          </div>
+          <div class="field_data">
+            <p>{{ project.contract_num }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Naslov gradbišča</p>
+          </div>
+          <div class="field_data">
+            <p>{{ address.street }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="financial_data">
+      <ul>
+        <li>
+          <div class="field_name">
+            <p>Pogodbena vrednost</p>
+          </div>
+          <div class="field_data">
+            <p>{{ project.contract_value }} €</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Urna postavka</p>
+          </div>
+          <div class="field_data">
+            <p>{{ project.hourly_rate }} €</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

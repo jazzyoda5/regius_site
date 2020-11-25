@@ -1,0 +1,48 @@
+.project_details {
+    max-width: 850px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+.project_name {
+    text-align: center;
+    padding: 20px;
+}
+.data {
+    display: grid;
+    grid-template-columns: auto;
+}
+.data li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.main_data, .financial_data {
+    background-color: #f0f0f0 !important;
+    min-width: 300px;
+    border-radius: 8px;
+    margin: 10px;
+}
+.field_name p {
+    font-style: italic;
+    color: gray;
+}
+.field_data p, .field_data a {
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+}
+.field_data a {
+    color: #c84f17;
+    padding-top: 3px;
+    padding-bottom:3px;
+}
+.field_data a:hover {
+    color: #a22c00;
+    text-decoration: none;
+}

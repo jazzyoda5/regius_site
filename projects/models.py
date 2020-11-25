@@ -28,7 +28,7 @@ class Project(models.Model):
     # Ime projekta
     project_name = models.CharField(_("Ime projekta"), max_length=70)
     # Izvajalec
-    contractor_choices = [('regius', 'Regius'), ('tantus', 'Tantus')]
+    contractor_choices = [('Regius', 'Regius'), ('Tantus', 'Tantus')]
     contractor = models.CharField(_("izvajalec"), max_length=30, choices=contractor_choices)
     # Aug
     aug = models.BooleanField(_("Aüg"))
@@ -53,13 +53,13 @@ class Project(models.Model):
 class ProjectAdress(models.Model):
     project = models.OneToOneField(Project, null=True, on_delete=models.CASCADE)
     # Ulica
-    street = models.CharField(_("ulica"), max_length=80)
+    street = models.CharField(_("ulica"), null=True, max_length=80)
     # Mesto
-    city = models.CharField(_("mesto"), max_length=50)
+    city = models.CharField(_("mesto"), null=True, max_length=50)
     # Poštna št.
-    zip_code = models.CharField(_("poštna št."), max_length=30)
+    zip_code = models.CharField(_("poštna št."), null=True, max_length=30)
     # Država
-    country = models.CharField(_("država"), max_length=60)
+    country = models.CharField(_("država"), null=True, max_length=60)
 
     def __str__(self):
         return str(self.project)
@@ -67,15 +67,15 @@ class ProjectAdress(models.Model):
 
 class ProjectContactInfo(models.Model):
     project = models.OneToOneField(Project, null=True, on_delete=models.CASCADE)
-    resp_on_site_name = models.CharField(_("Vodja gradbišča s strani izvajalca"), max_length=50)
-    resp_on_site_phone_num = models.CharField(_("Telefon - vodja gradbišča"), max_length=50)
-    resp_on_site_email = models.EmailField(_("Email - vodja gradbišča"), max_length=254)
-    resp_client_name = models.CharField(_("Odgovorna oseba s strani naročnika"), max_length=80)
-    resp_client_phone_num = models.CharField(_("Telefon - naročnik"), max_length=50)
-    resp_client_email = models.EmailField(_("Email - naročnik"), max_length=254)
-    resp_contractor_name = models.CharField(_("Odgovorna oseba s strani izvajalca"), max_length=50)
-    resp_contractor_phone_num = models.CharField(_("Telefon - izvajalec"), max_length=50)
-    resp_contractor_email = models.EmailField(_("Email - izvajalec"), max_length=254)
+    resp_on_site_name = models.CharField(_("Vodja gradbišča s strani izvajalca"), null=True, max_length=50)
+    resp_on_site_phone_num = models.CharField(_("Telefon - vodja gradbišča"), null=True, max_length=50)
+    resp_on_site_email = models.EmailField(_("Email - vodja gradbišča"), null=True, max_length=254)
+    resp_client_name = models.CharField(_("Odgovorna oseba s strani naročnika"), null=True, max_length=80)
+    resp_client_phone_num = models.CharField(_("Telefon - naročnik"), null=True, max_length=50)
+    resp_client_email = models.EmailField(_("Email - naročnik"), null=True, max_length=254)
+    resp_contractor_name = models.CharField(_("Odgovorna oseba s strani izvajalca"), null=True, max_length=50)
+    resp_contractor_phone_num = models.CharField(_("Telefon - izvajalec"), null=True, max_length=50)
+    resp_contractor_email = models.EmailField(_("Email - izvajalec"), null=True, max_length=254)
 
 
 
