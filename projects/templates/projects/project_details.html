@@ -28,18 +28,25 @@
         </li>
         <li>
           <div class="field_name">
-            <p>Številka pogodbe</p>
+            <p>Naslov gradbišča</p>
           </div>
           <div class="field_data">
-            <p>{{ project.contract_num }}</p>
+            {% if address %}
+            <p>
+              {{ address.street }}, {{ address.zip_code }} {{ address.city }},
+              {{ address.country }}
+            </p>
+            {% else %}
+            <a href="#">Dodaj naslov gradbišča</a>
+            {% endif %}
           </div>
         </li>
         <li>
           <div class="field_name">
-            <p>Naslov gradbišča</p>
+            <p>Številka pogodbe</p>
           </div>
           <div class="field_data">
-            <p>{{ address.street }}</p>
+            <p>{{ project.contract_num }}</p>
           </div>
         </li>
       </ul>
@@ -64,10 +71,122 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="documents">
-    {% block documents %} {% endblock %}
+    {% if contact_info %}
+    <div class="main_data">
+      <ul>
+        <li>
+          <div class="field_name">
+            <p>Odgovorne osebe za pogodbo s strani naročnika</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_client_name }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Email</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_client_email }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Telefon</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_client_phone_num }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="main_data">
+      <ul>
+        <li>
+          <div class="field_name">
+            <p>Odgovorne osebe za pogodbo s strani izvajalca</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_contractor_name }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Email</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_contractor_email }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Telefon</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_contractor_phone_num }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="main_data">
+      <ul>
+        <li>
+          <div class="field_name">
+            <p>Odgovorne osebe na gradbišču s strani naročnika</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_on_site_name }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Email</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_on_site_email }}</p>
+          </div>
+        </li>
+        <li>
+          <div class="field_name">
+            <p>Telefon</p>
+          </div>
+          <div class="field_data">
+            <p>{{ contact_info.resp_on_site_phone_num }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    {% else %}
+    <div class="documents">
+      <ul>
+        <li>
+          <a href="/projekti/kontaktnipodatki/{{project.id}}">Dodaj kontaktne podatke</a>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+    <div class="documents">
+      <div class="document">
+        <ul>
+          <li>
+            {% if project_doc %}
+            <p>Projektni list</p>
+
+            <a
+              href="{{project_doc.project_doc.url}}"
+              download="{{project_doc.project_doc.url}}"
+              >{{ project_doc.title }}.docx</a
+            >
+            {% else %}
+            <p>Projektni list</p>
+            <a href="/dokumenti/projektnilist/{{ project.id }}"
+              >Pripravi dokument</a
+            >
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-
 {% endblock %}

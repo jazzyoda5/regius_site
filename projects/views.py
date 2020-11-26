@@ -3,7 +3,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .forms import NewProjectForm, NewClientForm, ProjectAddressForm, ProjectContactInfoForm
 from django.contrib.auth.decorators import login_required
 from .models import Client
-from .models import Project, ProjectAdress
+from .models import Project, ProjectAdress, ProjectContactInfo
+from documents.models import ProjectDocument
 from documents.models import DocumentTemplate
 
 
@@ -79,14 +80,62 @@ def add_client(request):
                 return render(request, 'projects/add_client.html', context)
 
 
+def add_project_contact_info(request, project_id):
+    if request.method == "GET":
+        project = Project.objects.get(id=project_id)
+        context = {
+            'form': ProjectContactInfoForm(initial={'project': project})
+        }
+        return render(request, 'projects/add_project_contact_info.html', context)
+
+    # If form is submitted
+    elif request.method == "POST":
+        project = Project.objects.get(id=project_id)
+        form = ProjectContactInfoForm(request.POST, initial={
+            'project': project
+        })
+        if form.is_valid():
+            # Check if client already exists in db
+            project = Project.objects.get(id=project_id)
+            object_count = len(ProjectContactInfo.objects.filter(project=project))
+            # If no
+            if object_count == 0:
+                form.save()
+                return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
+            # If yes
+            else:
+                context = {
+                    'form': ProjectContactInfoForm,
+                    'client_exists': True
+                }
+                return render(request, 'projects/add_client.html', context)
+
 def project_details(request, project_id):
+    # Get project
     project = Project.objects.get(id=project_id)
+
+    # Get project details
     try:
         address = ProjectAdress.objects.get(project=project)
     except ProjectAdress.DoesNotExist:
         address = None
+
+    try:
+        project_doc = ProjectDocument.objects.get(project=project)
+    except ProjectDocument.DoesNotExist:
+        project_doc = None
+
+    try:
+        contact_info = ProjectContactInfo.objects.get(project=project)
+    except ProjectContactInfo.DoesNotExist:
+        contact_info = None
+
+    
+
     context = {
         'project': project,
         'address': address,
+        'project_doc': project_doc,
+        'contact_info': contact_info
     }
     return render(request, 'projects/project_details.html', context)

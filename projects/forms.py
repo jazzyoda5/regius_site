@@ -42,6 +42,29 @@ class ProjectContactInfoForm(forms.ModelForm):
     class Meta:
         model = ProjectContactInfo
         fields = '__all__'
+        widgets = {
+            'project': forms.Select(attrs={'class': 'form-control'}),
+            'resp_client_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_client_phone_num': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_client_email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'resp_contractor_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_contractor_phone_num': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_contractor_email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'resp_on_site_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_on_site_phone_num': forms.TextInput(attrs={'class': 'form-control'}),
+            'resp_on_site_email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'resp_client_name': 'Odgovorna oseba za pogodbo s strani naročnika',
+            'resp_client_phone_num': 'Telefon',
+            'resp_client_email': 'Email',
+            'resp_contractor_name': 'Odgovorna oseba za pogodbo s strani izvajalca',
+            'resp_contractor_phone_num': 'Telefon',
+            'resp_contractor_email': 'Email',
+            'resp_on_site_name': 'Projektni vodja s strani izvajalca',
+            'resp_on_site_phone_num': 'Telefon',
+            'resp_on_site_email': 'Email',
+        }
 
 
 class NewClientForm(forms.ModelForm):
@@ -58,5 +81,5 @@ class NewClientForm(forms.ModelForm):
             'tax_num': forms.TextInput(attrs={'class': 'form-control'}),
         }
         labels = {
-            'name': 'Ime podjetja'
+            'name': 'Ime podjetja',
         }

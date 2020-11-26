@@ -77,7 +77,8 @@ class ProjectContactInfo(models.Model):
     resp_contractor_phone_num = models.CharField(_("Telefon - izvajalec"), null=True, max_length=50)
     resp_contractor_email = models.EmailField(_("Email - izvajalec"), null=True, max_length=254)
 
-
+    def __str__(self):
+        return self.project
 
 
 
