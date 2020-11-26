@@ -16,11 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts.views import login_page
+from documents import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url
+from django.views.static import serve
+
 
 urlpatterns = [
     path('', login_page),
     path('accounts/', include("accounts.urls")),
     path('overview/', include("overview.urls")),
     path('projekti/', include("projects.urls")),
+    path('dokumenti/', include("documents.urls")),
+    url(r'download/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

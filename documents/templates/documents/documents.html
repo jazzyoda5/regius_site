@@ -1,0 +1,11 @@
+{% extends "overview/main.html" %}
+{% block content %}
+<div class="files">
+    {% for file in files %}
+        <h2>{{file.title}}</h2>
+        <a href="{{file.document.url}}" download="{{file.document.url}}">Prenesi</a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

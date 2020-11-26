@@ -4,6 +4,7 @@ from .forms import NewProjectForm, NewClientForm, ProjectAddressForm, ProjectCon
 from django.contrib.auth.decorators import login_required
 from .models import Client
 from .models import Project, ProjectAdress
+from documents.models import DocumentTemplate
 
 
 @login_required
@@ -86,6 +87,6 @@ def project_details(request, project_id):
         address = None
     context = {
         'project': project,
-        'address': address
+        'address': address,
     }
     return render(request, 'projects/project_details.html', context)
