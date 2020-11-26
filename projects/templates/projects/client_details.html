@@ -1,0 +1,23 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/client_details.css' %}"
+/>{% endblock %} {% block content %}
+<div class="client_details">
+  <div class="client_name">
+    <h3>{{ values.Ime }}</h3>
+  </div>
+  <ul>
+    {% for key, val in values.items %}
+    <li>
+      <div class="field_name">
+        <p>{{ key }}</p>
+      </div>
+      <div class="field_data">
+        <p>{{ val }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

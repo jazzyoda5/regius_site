@@ -33,6 +33,9 @@ class SignupForm(UserCreationForm):
         <li>
         <p>Geslo mora vsebovati črke in številke</p>
         </li>
+        <li>
+        <p>Geslo ne sme biti preveč podobno vašim osebnim podatkom</p>
+        </li>
         </ul>
         """
 

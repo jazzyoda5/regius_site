@@ -4,17 +4,17 @@ from django.utils.translation import ugettext as _
 
 class Client(models.Model):
     # Ime
-    name = models.CharField(_("ime"), max_length=80)
+    name = models.CharField(_("Ime"), max_length=80)
     # Ulica
-    street = models.CharField(_("ulica"), max_length=80)
+    street = models.CharField(_("Ulica"), max_length=80)
     # Mesto
-    city = models.CharField(_("mesto"), max_length=50)
+    city = models.CharField(_("Mesto"), max_length=50)
     # Poštna št.
-    zip_code = models.CharField(_("poštna št."), max_length=30)
+    zip_code = models.CharField(_("Poštna št."), max_length=30)
     # Država
-    country = models.CharField(_("država"), max_length=60)
+    country = models.CharField(_("Država"), max_length=60)
     # Davčna št.
-    tax_num = models.CharField(_("davčna št."), max_length=50)
+    tax_num = models.CharField(_("Davčna št."), max_length=50)
 
     def __str__(self):
         return self.name

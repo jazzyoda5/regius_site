@@ -34,6 +34,35 @@ def add_project(request):
             return HttpResponseRedirect('/projekti/')
 
 
+def project_details(request, project_id):
+    # Get project
+    project = Project.objects.get(id=project_id)
+
+    # Get project details
+    try:
+        address = ProjectAdress.objects.get(project=project)
+    except ProjectAdress.DoesNotExist:
+        address = None
+
+    try:
+        project_doc = ProjectDocument.objects.get(project=project)
+    except ProjectDocument.DoesNotExist:
+        project_doc = None
+
+    try:
+        contact_info = ProjectContactInfo.objects.get(project=project)
+    except ProjectContactInfo.DoesNotExist:
+        contact_info = None
+
+    context = {
+        'project': project,
+        'address': address,
+        'project_doc': project_doc,
+        'contact_info': contact_info
+    }
+    return render(request, 'projects/project_details.html', context)
+    
+# Construction site address
 @login_required
 def add_project_address(request):
     if request.method == "GET":
@@ -80,6 +109,31 @@ def add_client(request):
                 return render(request, 'projects/add_client.html', context)
 
 
+def client_details(request, client_id):
+    # Get client
+    client = Client.objects.get(id=client_id)
+    client_fields = client._meta.get_fields()
+
+    # Create a dict
+    values = {}
+
+    for field in client_fields:
+        field_name = field.name
+        if field_name != 'id':
+            try:
+                values[field.verbose_name] = getattr(client, field_name)
+            except AttributeError:
+                pass
+            
+
+    context = {
+        'values': values
+    }
+    print(values)
+    return render(request, 'projects/client_details.html', context)
+
+
+
 def add_project_contact_info(request, project_id):
     if request.method == "GET":
         project = Project.objects.get(id=project_id)
@@ -110,32 +164,4 @@ def add_project_contact_info(request, project_id):
                 }
                 return render(request, 'projects/add_client.html', context)
 
-def project_details(request, project_id):
-    # Get project
-    project = Project.objects.get(id=project_id)
 
-    # Get project details
-    try:
-        address = ProjectAdress.objects.get(project=project)
-    except ProjectAdress.DoesNotExist:
-        address = None
-
-    try:
-        project_doc = ProjectDocument.objects.get(project=project)
-    except ProjectDocument.DoesNotExist:
-        project_doc = None
-
-    try:
-        contact_info = ProjectContactInfo.objects.get(project=project)
-    except ProjectContactInfo.DoesNotExist:
-        contact_info = None
-
-    
-
-    context = {
-        'project': project,
-        'address': address,
-        'project_doc': project_doc,
-        'contact_info': contact_info
-    }
-    return render(request, 'projects/project_details.html', context)

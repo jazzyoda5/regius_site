@@ -1,0 +1,27 @@
+.client_details {
+    max-width: 850px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+.client_name {
+    text-align: center;
+    padding: 20px;
+}
+.client_details ul {
+    display: grid;
+    grid-template-columns: auto;
+    background-color: #f0f0f0 !important;
+    min-width: 300px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.client_details li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-right: 30px;
+    padding-top: 20px;
+}
