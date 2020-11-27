@@ -6,9 +6,22 @@
     padding: 20px;
 }
 .client_name {
+    display: flex;
+    justify-content: space-around;
     text-align: center;
     padding: 20px;
 }
+.client_name a {
+    display: flex;
+    font-size: 30px;
+    float: right !important;
+    color: #c84f17;
+}
+.client_name a:hover {
+    color: #a22c00;
+    text-decoration: none;
+}
+
 .client_details ul {
     display: grid;
     grid-template-columns: auto;
@@ -18,10 +31,27 @@
     margin: 10px;
 }
 
-.client_details li {
+.data li {
     display: flex;
     justify-content: space-between;
     list-style: none;
     padding-right: 30px;
     padding-top: 20px;
+}
+.projects li {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+.projects h4 {
+    margin-top: 15px;
+}
+.projects a {
+    color: #c84f17;
+}
+.projects a:hover {
+    color: #a22c00;
+    text-decoration: none;
 }

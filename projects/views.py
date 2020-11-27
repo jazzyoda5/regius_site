@@ -34,6 +34,7 @@ def add_project(request):
             return HttpResponseRedirect('/projekti/')
 
 
+@login_required
 def project_details(request, project_id):
     # Get project
     project = Project.objects.get(id=project_id)
@@ -61,7 +62,24 @@ def project_details(request, project_id):
         'contact_info': contact_info
     }
     return render(request, 'projects/project_details.html', context)
-    
+
+
+def edit_project_details(request, project_id):
+    project = Project.objects.get(id=project_id)
+    if request.method == "GET":
+        context = {
+            'form': NewProjectForm(instance=project),
+            'title': project.project_name,
+        }
+        return render(request, 'projects/edit_project_details.html', context)
+
+    elif request.method == "POST":
+        form = NewProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/projekti/' + str(project.id))
+
+
 # Construction site address
 @login_required
 def add_project_address(request):
@@ -78,7 +96,6 @@ def add_project_address(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/projekti/')
-
 
 
 @login_required
@@ -109,6 +126,7 @@ def add_client(request):
                 return render(request, 'projects/add_client.html', context)
 
 
+@login_required
 def client_details(request, client_id):
     # Get client
     client = Client.objects.get(id=client_id)
@@ -124,16 +142,36 @@ def client_details(request, client_id):
                 values[field.verbose_name] = getattr(client, field_name)
             except AttributeError:
                 pass
-            
+    
+    # Projects with this client
+    projects = Project.objects.filter(client=client)
 
     context = {
-        'values': values
+        'values': values,
+        'client': client,
+        'projects': projects
     }
     print(values)
     return render(request, 'projects/client_details.html', context)
 
 
+@login_required
+def edit_client_details(request, client_id):
+    client = Client.objects.get(id=client_id)
+    if request.method == "GET":
+        context = {
+            'form': NewClientForm(instance=client),
+        }
+        return render(request, 'projects/edit_client_details.html', context)
 
+    elif request.method == "POST":
+        form = NewClientForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/projekti/stranka/' + str(client.id) + '/')
+
+
+@login_required
 def add_project_contact_info(request, project_id):
     if request.method == "GET":
         project = Project.objects.get(id=project_id)

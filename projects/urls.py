@@ -8,5 +8,7 @@ urlpatterns = [
     path('novastranka/', views.add_client),
     path('<int:project_id>/', views.project_details),
     path('kontaktnipodatki/<int:project_id>', views.add_project_contact_info),
-    path('stranka/<int:client_id>/', views.client_details)
+    path('stranka/<int:client_id>/uredi/', views.edit_client_details),
+    path('stranka/<int:client_id>/', views.client_details),
+    path('<int:project_id>/uredi/', views.edit_project_details)
 ]
