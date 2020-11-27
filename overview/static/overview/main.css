@@ -1,5 +1,5 @@
 body {
-    background-color: #e4e4e4;
+    background-color: #9e9895;
 }
 .nav-bar-div {
     height: 100%;
@@ -7,7 +7,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #1b1b1b;
-    background-image: linear-gradient(62deg, #161616 0%, #c84f17 100%);
+    background-image: linear-gradient(62deg, #303030 20%, #d84400 100%);
 }
 .nav-bar-div nav {
     display: flex;

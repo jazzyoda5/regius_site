@@ -43,8 +43,3 @@ def add_user_page(request):
             return HttpResponseRedirect('/overview/')
         return HttpResponse('No')
 
-@login_required
-def add_user(request):
-    username = request.POST['username']
-    is_admin = request.POST ['is_admin']
-    

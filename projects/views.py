@@ -6,6 +6,7 @@ from .models import Client
 from .models import Project, ProjectAdress, ProjectContactInfo
 from documents.models import ProjectDocument
 from documents.models import DocumentTemplate
+from django.db.models import Q
 
 
 @login_required
@@ -17,10 +18,22 @@ def project_overview(request):
     return render(request, 'projects/projects_overview.html', context)
 
 
-@login_required
+def project_overview_search(request):
+    q = request.GET.get('q')
+    projects = Project.objects.filter(
+        Q(project_name__icontains=q) | Q(client__name__icontains=q)
+    )
+    context = {
+        'projects': projects
+    }
+    return render(request, 'projects/projects_overview.html', context)
+
+
+
+@ login_required
 def add_project(request):
     if request.method == "GET":
-        context = {
+        context={
             'form': NewProjectForm,
             'title': 'Nov Projekt',
             'last_page': False
@@ -32,6 +45,13 @@ def add_project(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/projekti/')
+
+
+@login_required
+def delete_project(request, project_id):
+    project = Project.objects.get(id=project_id)
+    project.delete()
+    return HttpResponseRedirect('/projekti/')
 
 
 @login_required
@@ -82,20 +102,41 @@ def edit_project_details(request, project_id):
 
 # Construction site address
 @login_required
-def add_project_address(request):
+def add_project_address(request, project_id):
+    project = Project.objects.get(id=project_id)
     if request.method == "GET":
         context = {
-            'form': ProjectAddressForm,
+            'form': ProjectAddressForm(initial={'project': project}),
             'title': 'Naslov Gradbišča',
             'last_page': False
         }
-        return render(request, 'projects/add_project.html', context)
+        return render(request, 'projects/edit_project_details.html', context)
 
     elif request.method == "POST":
-        form = ProjectAddressForm(request.POST)
+        form = ProjectAddressForm(request.POST, initial={'project': project})
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/projekti/')
+
+            return HttpResponseRedirect('/projekti/' + str(project.id))
+
+
+@login_required
+def edit_project_address(request, project_id):
+    project_address = ProjectAdress.objects.get(project=project_id)
+    if request.method == "GET":
+        context = {
+            'form': ProjectAddressForm(instance=project_address),
+            'title': 'Naslov Gradbišča',
+            'last_page': False
+        }
+        return render(request, 'projects/edit_project_details.html', context)
+
+    elif request.method == "POST":
+        form = ProjectAddressForm(request.POST, instance=project_address)
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect('/projekti/' + str(project_id))
 
 
 @login_required
@@ -201,5 +242,20 @@ def add_project_contact_info(request, project_id):
                     'client_exists': True
                 }
                 return render(request, 'projects/add_client.html', context)
+
+
+def edit_project_contact_info(request, project_id):
+    contact_info = ProjectContactInfo.objects.get(project=project_id)
+    if request.method == "GET":
+        context = {
+            'form': ProjectContactInfoForm(instance=contact_info),
+        }
+        return render(request, 'projects/edit_client_details.html', context)
+
+    elif request.method == "POST":
+        form = ProjectContactInfoForm(request.POST, instance=contact_info)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
 
 

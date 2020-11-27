@@ -3,12 +3,16 @@ from . import views
 
 urlpatterns = [
     path('', views.project_overview),
+    path('najdi/', views.project_overview_search),
     path('novprojekt/', views.add_project),
-    path('novprojekt/naslov/', views.add_project_address),
+    path('<int:project_id>/dodajnaslov/', views.add_project_address),
+    path('<int:project_id>/uredinaslov/', views.edit_project_address),
     path('novastranka/', views.add_client),
     path('<int:project_id>/', views.project_details),
     path('kontaktnipodatki/<int:project_id>', views.add_project_contact_info),
+    path('kontaktnipodatki/<int:project_id>/uredi/', views.edit_project_contact_info),
     path('stranka/<int:client_id>/uredi/', views.edit_client_details),
     path('stranka/<int:client_id>/', views.client_details),
-    path('<int:project_id>/uredi/', views.edit_project_details)
+    path('<int:project_id>/uredi/', views.edit_project_details),
+    path('<int:project_id>/izbrisi/', views.delete_project)
 ]

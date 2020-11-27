@@ -5,7 +5,17 @@ class NewProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ('__all__')
+        fields = [
+            'client',
+            'status',
+            'project_name',
+            'contractor',
+            'contract_num',
+            'project_start_date',
+            'project_end_date',
+            'contract_value',
+            'hourly_rate'
+        ]
         widgets = {
             'project_start_date': forms.SelectDateWidget(attrs={'class': 'form-control'}),
             'project_end_date': forms.SelectDateWidget(attrs={'class': 'form-control'}),
@@ -28,12 +38,16 @@ class ProjectAddressForm(forms.ModelForm):
 
     class Meta:
         model = ProjectAdress
-        fields = ['street', 'city', 'zip_code', 'country']
+        fields = ['project', 'street', 'city', 'zip_code', 'country']
         widgets = {
             'street': forms.TextInput(attrs={'class': 'form-control'}),
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
             'country': forms.TextInput(attrs={'class': 'form-control'}),
-            'city': forms.TextInput(attrs={'class': 'form-control'}),            
+            'city': forms.TextInput(attrs={'class': 'form-control'}),  
+            'project': forms.Select(attrs={'class': 'form-control'}),           
+        }
+        labels = {
+            'project': 'Projekt'
         }
 
 

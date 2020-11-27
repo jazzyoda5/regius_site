@@ -49,6 +49,17 @@ def create_project_doc(request, project_id):
             print('error')
             pass
 
+    project_address = ProjectAdress.objects.get(project=project_id)
+    for field in project_address._meta.get_fields():
+        try:
+            field_name = 'pa_' + str(field.name)
+            field_value = getattr(project_address, field.attname)
+            context[field_name] = str(field_value)
+
+        except AttributeError:
+            print('error')
+            pass
+
 
     # open the template and create doc, then save to autofill_templates
 
@@ -79,3 +90,10 @@ def download(request, path):
                 os.path.basename(file_path)
             return response
     return HttpResponse("Nope")
+
+
+def delete_project_doc(request, document_id):
+    document = ProjectDocument.objects.get(id=document_id)
+    project = document.project
+    document.delete()
+    return HttpResponseRedirect('/projekti/' + str(project.id) + '/')

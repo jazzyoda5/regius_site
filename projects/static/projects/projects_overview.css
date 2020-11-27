@@ -44,3 +44,18 @@
     justify-content: space-between;
     width: 90%;
 }
+.search {
+    margin-bottom: 20px;
+}
+.search button:hover {
+    color: #c85017;
+}
+.search form {
+    display: flex;
+    max-width: 500px;
+    margin: auto;
+}
+.search input:focus {
+    border-color: #752a08da;
+    box-shadow: none;
+}

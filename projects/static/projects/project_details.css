@@ -29,7 +29,7 @@
     padding-top: 20px;
 }
 
-.main_data, .financial_data, .documents {
+.main_data, .cons_site_address, .documents {
     background-color: #f0f0f0 !important;
     min-width: 300px;
     border-radius: 8px;
@@ -51,6 +51,96 @@
     padding-bottom:3px;
 }
 .field_data a:hover, .documents a:hover, .project_name a:hover {
-    color: #a22c00;
+    color: #691c00;
+    text-decoration: none;
+}
+.icons {
+    display: flex;
+    align-items: center;
+}
+.icons a {
+    padding-right: 20px;
+}
+.cons_site_address .field_data {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+}
+.cons_site_address p {
+    margin: auto;
+}
+.icons .btn {
+    background-color: white;
+    color: #c84f17;
+    font-size: 30px;
+    padding: 0;
+    margin-bottom: 5px;
+    outline: none;
+    border: none;
+}
+.icons .btn:hover {
+    background-color: white;
+    color: #691c00;
+    font-size: 30px;
+    padding: 0;
+    margin-bottom: 5px;
+    outline: none;
+    border: none;
+}
+.icons .btn:focus, .icons .btn:active, .icons .btn:active:focus {
+    background-color: white;
+    color: #691c00;
+    font-size: 30px;
+    padding: 0;
+    margin-bottom: 5px;
+    outline: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+.modal-footer .btn-primary, .documents .btn-primary {
+    background-color: #c84f17;
+    outline-color: #c84f17;
+    border-color: #c84f17;
+}
+.documents .btn-primary {
+    display: flex;
+    font-size: 20px;   
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.modal-footer .btn-primary:hover,
+.modal-footer .btn-primary:focus,
+.modal-footer .btn-primary:active,
+.modal-footer .btn-primary:active:focus,
+.documents .btn-primary:active:focus,
+.documents .btn-primary:hover {
+    background-color: #691c00;
+    outline-color: #c84f17;
+    box-shadow: none !important;
+    outline-color: #c84f17;
+    border-color: #c84f17;
+}
+.main_data hr {
+    width: 80%;
+    border-color: rgb(189, 189, 189);
+}
+.edit_contacts {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    float: right;
+    padding: 10px;
+}
+.edit_contacts a {
+    color: #c84f17;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.edit_contacts a:hover {
+    color: #691c00;
     text-decoration: none;
 }

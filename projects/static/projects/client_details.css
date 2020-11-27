@@ -44,9 +44,11 @@
     list-style: none;
     padding-right: 30px;
     padding-top: 10px;
+    margin-left: 25px;
 }
 .projects h4 {
-    margin-top: 15px;
+    margin: auto;
+    padding:13px;
 }
 .projects a {
     color: #c84f17;
@@ -54,4 +56,14 @@
 .projects a:hover {
     color: #a22c00;
     text-decoration: none;
+}
+.field_data p, .field_data a {
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+}
+.field_name p, .documents p {
+    font-style: italic;
+    color: gray;
 }

@@ -31,11 +31,11 @@ class Project(models.Model):
     contractor_choices = [('Regius', 'Regius'), ('Tantus', 'Tantus')]
     contractor = models.CharField(_("izvajalec"), max_length=30, choices=contractor_choices)
     # Aug
-    aug = models.BooleanField(_("Aüg"))
+    aug = models.BooleanField(_("Aüg"), null=True)
     # Številka pogodbe
     contract_num = models.CharField(_("številka pogodbe"), max_length=60)
     # Aneks
-    annex = models.BooleanField(_("aneks"))
+    annex = models.BooleanField(_("aneks"), null=True)
     # Obdobje
     project_start_date = models.DateField(_("Od"), auto_now=False, auto_now_add=False)
     project_end_date = models.DateField(_("Do"), auto_now=False, auto_now_add=False)
@@ -44,7 +44,7 @@ class Project(models.Model):
     # Urna postavka
     hourly_rate = models.DecimalField(_("urna postavka"), max_digits=5, decimal_places=2)
     # LW
-    lw = models.BooleanField(_("LW"))
+    lw = models.BooleanField(_("LW"), null=True)
 
     def __str__(self):
         return self.project_name
@@ -78,7 +78,7 @@ class ProjectContactInfo(models.Model):
     resp_contractor_email = models.EmailField(_("Email - izvajalec"), null=True, max_length=254)
 
     def __str__(self):
-        return self.project
+        return self.project.project_name
 
 
 
