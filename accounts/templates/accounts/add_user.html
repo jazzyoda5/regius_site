@@ -1,10 +1,33 @@
-{% extends "overview/main.html" %} {% block content %}
+{% extends "overview/main.html" %} 
+{% load static %}
+{% block add_styles %}
+<link rel="stylesheet"
+type="text/css"
+href="{% static 'accounts\add_user.css' %}">
+{% endblock %}
 
+
+{% block content %}
+<div class="form">
 <form method="post" class="adduser-form"> {% csrf_token %}
   <div class="form-title">
     <h4>REGISTRACIJA NOVEGA UPORABNIKA</h4>
   </div>
     {{ form }}
+  {% if user_not_staff %}
+          <div class="alert alert-danger" role="alert">
+          Novega uporabnika lahko ustvari samo administrator.
+        </div>
+  {% elif invalid_data %}
+          <div class="alert alert-danger" role="alert">
+          Poskusite znova.
+        </div>
+  {% elif user_already_exists %}
+  <div class="alert alert-danger" role="alert">
+          Uporabnik s tem emailom ali uporabniškim imenom že obstaja.
+        </div>
+  {% endif %}
   <button type="submit" class="btn btn-primary">Registriraj</button>
 </form>
+</div>
 {% endblock %}

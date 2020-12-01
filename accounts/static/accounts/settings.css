@@ -1,0 +1,123 @@
+.settings {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  max-width: 850px;
+  padding: 30px;
+  border-radius: 10px;
+}
+.settings li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding-right: 30px;
+  padding-top: 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 300px;
+  margin: 30px;
+}
+.data {
+  background-color: #f0f0f0 !important;
+  min-width: 300px;
+  border-radius: 8px;
+  margin: 10px;
+}
+.field_name p {
+  font-style: italic;
+  color: rgb(87, 87, 87);
+}
+.field_data {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+}
+.field_data p {
+  margin: auto;
+}
+.field_data p,
+.field_data a {
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+}
+.field_data a,
+.documents a {
+  color: #c84f17;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.field_data a:hover,
+.documents a:hover,
+.project_name a:hover {
+  color: #691c00;
+  text-decoration: none;
+}
+.header a {
+  background-color: white;
+  color: #c84f17;
+  font-size: 30px;
+  padding: 0;
+  margin-bottom: 5px;
+  outline: none;
+  border: none;
+}
+.header a:hover {
+  background-color: white;
+  color: #691c00;
+  font-size: 30px;
+  padding: 0;
+  margin-bottom: 5px;
+  outline: none;
+  border: none;
+}
+.header a:active:focus {
+  background-color: white;
+  color: #691c00;
+  font-size: 30px;
+  padding: 0;
+  margin-bottom: 5px;
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
+}
+.password_change .form-control {
+  margin-bottom: 20px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+  box-shadow: none !important;
+  border-color: #c84f17;
+}
+.password_change .btn-primary {
+  background-color: #c84f17;
+  border-color: #c84f17;
+}
+.password_change .btn-primary:hover,
+.btn-primary:active:focus {
+  background-color: #691c00;
+  border-color: #691c00;
+}

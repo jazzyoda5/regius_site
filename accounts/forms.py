@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 
@@ -48,3 +48,36 @@ class SignupForm(UserCreationForm):
             'last_name': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
             'username': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
         }
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name', 'last_name', 'username',
+            'email'
+        ]
+        widgets = {
+            'first_name': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+            'last_name': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+            'username': forms.Textarea(attrs={'class': 'form-control', 'rows': '1'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'rows': '1'}),
+        }
+
+class ChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
+    new_password1 = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
+
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].label = 'Staro geslo'
+        self.fields['new_password1'].label = 'Novo geslo'
+        self.fields['new_password2'].label = 'Ponovi novo geslo'
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password1', 'new_password2']
