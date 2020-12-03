@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'overview.apps.OverviewConfig',
     'projects.apps.ProjectsConfig',
-    'documents.apps.DocumentsConfig'
+    'documents.apps.DocumentsConfig',
+    'workers.apps.WorkersConfig'
 ]
 
 MIDDLEWARE = [

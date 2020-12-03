@@ -29,6 +29,7 @@ urlpatterns = [
     path('overview/', include("overview.urls")),
     path('projekti/', include("projects.urls")),
     path('dokumenti/', include("documents.urls")),
+    path('delavci/', include("workers.urls")),
     url(r'download/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('admin/', admin.site.urls),
 ]

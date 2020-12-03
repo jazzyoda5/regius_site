@@ -2,6 +2,18 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 
+class Contractor(models.Model):
+    name_choices = [('Regius', 'Regius'), ('Tantus', 'Tantus')]
+    name = models.CharField(_("Izvajalec"), max_length=50, choices=name_choices)
+    street = models.CharField(_("Ulica"), max_length=60)
+    city = models.CharField(_("Mesto"), max_length=40)
+    zip_code = models.CharField(_("Poštna št."), max_length=10)
+    country = models.CharField(_("Država"), max_length=50, default='Slowenien', editable=False)
+    slo_tax_num = models.CharField(_("Davčna št."), max_length=50)
+
+    def __str__(self):
+        return self.name
+
 class Client(models.Model):
     # Ime
     name = models.CharField(_("Ime"), max_length=80)
@@ -28,8 +40,7 @@ class Project(models.Model):
     # Ime projekta
     project_name = models.CharField(_("Ime projekta"), max_length=70)
     # Izvajalec
-    contractor_choices = [('Regius', 'Regius'), ('Tantus', 'Tantus')]
-    contractor = models.CharField(_("izvajalec"), max_length=30, choices=contractor_choices)
+    contractor = models.ForeignKey(Contractor, null=True, on_delete=models.CASCADE)
     # Aug
     aug = models.BooleanField(_("Aüg"), null=True)
     # Številka pogodbe
@@ -76,6 +87,8 @@ class ProjectContactInfo(models.Model):
     resp_contractor_name = models.CharField(_("Odgovorna oseba s strani izvajalca"), null=True, max_length=50)
     resp_contractor_phone_num = models.CharField(_("Telefon - izvajalec"), null=True, max_length=50)
     resp_contractor_email = models.EmailField(_("Email - izvajalec"), null=True, max_length=254)
+    client_contract_signer = models.CharField(_("Zakonit zastopnik - naročnik"), null=True, max_length=50)
+
 
     def __str__(self):
         return self.project.project_name

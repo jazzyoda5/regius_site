@@ -165,7 +165,7 @@
       <ul>
         <li>
           <div class="field_name">
-            <p>Odgovorne osebe za pogodbo s strani naročnika</p>
+            <p>Odgovorna oseba za pogodbo s strani naročnika</p>
           </div>
           <div class="field_data">
             <p>{{ contact_info.resp_client_name }}</p>
@@ -190,7 +190,7 @@
         <hr />
         <li>
           <div class="field_name">
-            <p>Odgovorne osebe za pogodbo s strani izvajalca</p>
+            <p>Odgovorna oseba za pogodbo s strani izvajalca</p>
           </div>
           <div class="field_data">
             <p>{{ contact_info.resp_contractor_name }}</p>
@@ -215,7 +215,7 @@
         <hr />
         <li>
           <div class="field_name">
-            <p>Odgovorne osebe na gradbišču s strani naročnika</p>
+            <p>Odgovorna oseba na gradbišču s strani naročnika</p>
           </div>
           <div class="field_data">
             <p>{{ contact_info.resp_on_site_name }}</p>
@@ -235,6 +235,17 @@
           </div>
           <div class="field_data">
             <p>{{ contact_info.resp_on_site_phone_num }}</p>
+          </div>
+        </li>
+        <hr>
+        <li>
+          <div class="field_name">
+            <p>Zakonit zastopnik - naročnik</p>
+          </div>
+          <div class="field_data">
+            {% if contact_info.client_contract_signer %}
+            <p>{{ contact_info.client_contract_signer }}</p>
+            {% endif %}
           </div>
         </li>
       </ul>
@@ -312,6 +323,45 @@
             <a href="/dokumenti/projektnilist/{{ project.id }}"
               >Pripravi dokument</a
             >
+            {% endif %}
+          </li>
+
+          <li>
+            {% if contract_doc %}
+            <p>Pogodba</p>
+
+            <a
+              href="{{contract_doc.contract.url}}"
+              download="{{contract_doc.contract.url}}"
+              >{{ contract_doc.title }}.docx</a
+            >
+            <form
+              action="/dokumenti/izbrisi-pogodba/{{contract_doc.id}}/"
+              method="Post"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  class="bi bi-trash"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  />
+                </svg>
+              </button>
+            </form>
+            {% else %}
+            <p>Pogodba</p>
+            <a href="/dokumenti/pogodba/{{ project.id }}">Pripravi dokument</a>
             {% endif %}
           </li>
         </ul>

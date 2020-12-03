@@ -4,7 +4,7 @@ from .forms import NewProjectForm, NewClientForm, ProjectAddressForm, ProjectCon
 from django.contrib.auth.decorators import login_required
 from .models import Client
 from .models import Project, ProjectAdress, ProjectContactInfo
-from documents.models import ProjectDocument
+from documents.models import ProjectDocument, ProjectContract
 from documents.models import DocumentTemplate
 from django.db.models import Q
 
@@ -71,6 +71,11 @@ def project_details(request, project_id):
         project_doc = None
 
     try:
+        contract_doc = ProjectContract.objects.get(project=project)
+    except ProjectContract.DoesNotExist:
+        contract_doc = None
+        
+    try:
         contact_info = ProjectContactInfo.objects.get(project=project)
     except ProjectContactInfo.DoesNotExist:
         contact_info = None
@@ -79,6 +84,7 @@ def project_details(request, project_id):
         'project': project,
         'address': address,
         'project_doc': project_doc,
+        'contract_doc': contract_doc,
         'contact_info': contact_info
     }
     return render(request, 'projects/project_details.html', context)

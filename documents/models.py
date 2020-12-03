@@ -23,3 +23,12 @@ class ProjectDocument(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.project_doc.storage.delete(self.project_doc.name)
         super().delete()
+
+class ProjectContract(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    contract = models.FileField(upload_to='media')
+    title = models.CharField(max_length=50)
+
+    def delete(self, using=None, keep_parents=False):
+        self.contract.storage.delete(self.contract.name)
+        super().delete()
