@@ -1,0 +1,26 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'workers/create_worker.css' %}"
+/>{% endblock %} 
+{% load worker_extras %}
+{% block content %}
+<div class="workers-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/delavci/">Vsi delavci</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="/delavci/novdelavec/">Nov delavec</a>
+    </li>
+  </ul>
+</div>
+<div class="form">
+  <form method="POST"> {% csrf_token %}
+    {{ form }}
+
+    <button type="submit" class="btn btn-primary">Dodaj delavca</button>
+
+  </form>
+</div>
+{% endblock %}

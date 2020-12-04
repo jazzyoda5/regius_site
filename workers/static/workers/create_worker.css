@@ -1,0 +1,60 @@
+.workers-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.workers-nav a {
+    color: black;
+}
+.workers-nav a:hover {
+    color: #c85017;
+}
+.form {
+    display: flex;
+    margin: auto;
+    max-width: 850px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+.form form {
+    width: 80%;
+    margin: auto;
+}
+.form form input {
+    margin-bottom: 15px !important;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+textarea:focus,
+.form-control:focus {   
+  box-shadow: none !important;
+  border-color: #c85017;
+}
+.btn-primary {
+    background-color: #c85017;
+    border-color: #c85017;
+    float: right;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: #a22c00 !important;
+    border-color: #c85017 !important;
+    box-shadow: none !important;
+    outline: 0 none;
+}

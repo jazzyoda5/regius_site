@@ -10,6 +10,7 @@ from .models import DocumentTemplate, ProjectDocument, ProjectContract
 import os
 from regius_site_1.settings import BASE_DIR
 from django.core.files import File
+from datetime import date
 
 
 def create_project_doc(request, project_id):
@@ -135,11 +136,16 @@ def create_contract_doc(request, project_id):
         except AttributeError:
             print('error')
             pass
-
+    
+    # Izvajalec
     contractor = Contractor.objects.get(name=project.contractor)
     context['contractor'] = contractor
     contractor_tax_num = contractor.slo_tax_num
     context['contractor_tax_num'] = contractor_tax_num
+
+    # Datum 
+    todays_date = date.today().strftime("%d.%m.%Y")
+    context['date'] = todays_date
 
     # open the template and create doc, then save to autofill_templates
 

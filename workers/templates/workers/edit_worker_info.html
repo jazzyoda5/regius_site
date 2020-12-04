@@ -1,0 +1,13 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'workers/create_worker.css' %}"
+/>{% endblock %} {% block content %}
+<div class="form">
+  <form method="POST">
+    {% csrf_token %} {{ form }} 
+    <button type="submit" class="btn btn-primary">Shrani</button>
+  </form>
+</div>
+
+{% endblock %}
