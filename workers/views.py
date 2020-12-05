@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import *
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -40,13 +40,6 @@ def worker_details(request, worker_id):
         worker_info = None
         worker_info_fields = None
     
-    # Get data for assignedprojects chart
-    # And convert it to json strings
-    data = [[]]
-    assigned_projects = AssignedToProject.objects.filter(worker=worker)
-    for project in assigned_projects:
-        print('start: {}, end: {}'.format(project.start_date, project.end_date))
-
     context = {
         'worker': worker,
         'worker_info': worker_info,
