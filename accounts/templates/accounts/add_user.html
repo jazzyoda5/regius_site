@@ -13,20 +13,20 @@ href="{% static 'accounts\add_user.css' %}">
   <div class="form-title">
     <h4>REGISTRACIJA NOVEGA UPORABNIKA</h4>
   </div>
-    {{ form }}
-  {% if user_not_staff %}
-          <div class="alert alert-danger" role="alert">
+    {% if user_not_staff %}
+          <div class="alert alert-warning" role="alert">
           Novega uporabnika lahko ustvari samo administrator.
         </div>
   {% elif invalid_data %}
-          <div class="alert alert-danger" role="alert">
-          Poskusite znova.
+          <div class="alert alert-warning" role="alert">
+          <strong>Poskusite znova.</strong> Geslo ni dovolj močno.
         </div>
   {% elif user_already_exists %}
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-warning" role="alert">
           Uporabnik s tem emailom ali uporabniškim imenom že obstaja.
         </div>
   {% endif %}
+    {{ form }}
   <button type="submit" class="btn btn-primary">Registriraj</button>
 </form>
 </div>

@@ -30,7 +30,8 @@ class NewProjectForm(forms.ModelForm):
         }
         labels = {
             'client': 'Stranka',
-            'project_name': 'Ime projekta'
+            'project_name': 'Ime projekta',
+            'contractor': 'Izvajalec'
         }
 
 
