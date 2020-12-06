@@ -30,3 +30,16 @@ class WorkerInfoForm(forms.ModelForm):
             'tax_num': forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': '1'}),
             'insurance_num': forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': '1'}),
         }
+
+
+class AssignedToProjectForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.AssignedToProject
+        fields = ['project', 'worker', 'start_date', 'end_date']
+        widgets = {
+            'project': forms.Select(attrs={'class': 'form-control mb-4', 'rows': '1'}),
+            'worker': forms.Select(attrs={'class': 'form-control mb-4', 'rows': '1'}),
+            'start_date': forms.SelectDateWidget(attrs={'class': 'form-control', 'rows': '1'}),
+            'end_date': forms.SelectDateWidget(attrs={'class': 'form-control', 'rows': '1'}),
+        }

@@ -40,9 +40,10 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-textarea:focus {   
+textarea:focus,
+select:focus {   
   box-shadow: none !important;
-  border-color: #c85017;
+  border-color: #c85017 !important;
 }
 .btn-primary {
     background-color: #c85017;

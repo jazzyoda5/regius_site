@@ -8,5 +8,5 @@ urlpatterns = [
     path('<int:worker_id>/izbrisi/', views.delete_worker, name='delete_worker'),
     path('novdelavec/', CreateWorker.as_view(), name='create_worker'),
     path('<int:worker_id>/uredi/', views.edit_worker_info, name="edit_worker_info"),
-    
+    path('test/', views.test)
 ]

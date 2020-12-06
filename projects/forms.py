@@ -97,3 +97,4 @@ class NewClientForm(forms.ModelForm):
         labels = {
             'name': 'Ime podjetja',
         }
+

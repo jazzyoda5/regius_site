@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Regius - Domača Stran</title>
+    <title>Regius - {% block title %} {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -29,7 +29,7 @@
       href="{% static 'accounts/add_user.css' %}"
     />
     {% endif %} {% block add_styles %} {% endblock %}
-    {% block add_script %} {% endblock %}
+    {% block add_jquery_chartjs %} {% endblock %}
   </head>
   <body>
     <div class="nav-bar-div">
@@ -90,7 +90,11 @@
       </nav>
     </div>
     <div class="additional_nav">{% block additional_nav %} {% endblock %}</div>
-    <div class="content">{% block content %} {% endblock %}</div>
+    <div class="content">
+
+{% block content %}
+    <h3>Dobrodošel {{ user.first_name }} {{ user.last_name }}!</h3>
+  {% endblock %}</div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -107,5 +111,6 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
+    {% block add_js %} {% endblock %}
   </body>
 </html>

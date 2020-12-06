@@ -2,7 +2,27 @@
   rel="stylesheet"
   type="text/css"
   href="{% static 'projects/project_details.css' %}"
-/>{% endblock %} {% block content %}
+/>{% endblock %} 
+{% block title %}
+{{ project.project_name }}
+{% endblock %}
+
+{% block content %}
+<div class="projects-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="/projekti/{{project.id}}/"
+        >Osnovni podatki</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/{{project.id}}/delavci/">Delavci</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dokumenti</a>
+    </li>
+  </ul>
+</div>
 <div class="project_details">
   <div class="project_name">
     <h3>{{ project.project_name }}</h3>
@@ -119,6 +139,14 @@
             <p>{{ project.hourly_rate }} €</p>
           </div>
         </li>
+        <li>
+          <div class="field_name">
+            <p>Trajanje</p>
+          </div>
+          <div class="field_data">
+            <p>{{ project.project_start_date }} - {{ project.project_end_date }}</p>
+          </div>
+        </li>        
       </ul>
     </div>
     <div class="cons_site_address">
@@ -237,7 +265,7 @@
             <p>{{ contact_info.resp_on_site_phone_num }}</p>
           </div>
         </li>
-        <hr>
+        <hr />
         <li>
           <div class="field_name">
             <p>Zakonit zastopnik - naročnik</p>

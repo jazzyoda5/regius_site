@@ -1,0 +1,45 @@
+{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/add_client.css' %}"
+/>{% endblock %} {% block content %}
+<div class="projects-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/{{project.id}}/">Osnovni podatki</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="/projekti/{{project.id}}/delavci/"
+        >Delavci</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dokumenti</a>
+    </li>
+  </ul>
+</div>
+<div class="form">
+  <form method="POST">
+    <h3 style="margin-bottom: 20px">Delavec k projektu</h3>
+    {% csrf_token %} 
+    {% if date_error %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Datumi se ne ujemajo s trajanjem projekta! </strong>( {{project.project_start_date}} - {{project.project_end_date}} )
+    </div>
+    {% elif form_not_valid %}
+    <div class="alert alert-warning" role="alert">
+        Obrazec ni pravilno izpolnjen.
+    </div>
+    {% elif worker_not_available %}
+    <div class="alert alert-warning" role="alert">
+        Ta delavec je v tem obdobju že zaseden.
+    </div>
+    {% endif %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary">
+      Dodaj delavca k projektu
+    </button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,3 +1,15 @@
+.projects-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.projects-nav a {
+    color: black;
+}
+.projects-nav a:hover {
+    color: #c85017;
+}
 .project_details {
     max-width: 850px;
     margin: auto;
@@ -29,28 +41,28 @@
     padding-top: 20px;
 }
 
-.main_data, .cons_site_address, .documents {
+.main_data, .cons_site_address, .documents, .assigned_workers {
     background-color: #f0f0f0 !important;
     min-width: 300px;
     border-radius: 8px;
     margin: 10px;
 }
-.field_name p, .documents p {
+.field_name p, .documents p, .assigned_workers p {
     font-style: italic;
     color: gray;
 }
-.field_data p, .field_data a {
+.field_data p, .field_data a, .assigned_workers a {
     background-color: white;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 6px;
 }
-.field_data a, .documents a {
+.field_data a, .documents a, .assigned_workers a {
     color: #c84f17;
     padding-top: 3px;
     padding-bottom:3px;
 }
-.field_data a:hover, .documents a:hover, .project_name a:hover {
+.field_data a:hover, .documents a:hover, .project_name a:hover, .assigned_workers a:hover {
     color: #691c00;
     text-decoration: none;
 }
@@ -143,4 +155,15 @@
 .edit_contacts a:hover {
     color: #691c00;
     text-decoration: none;
+}
+.assigned_workers_data{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.assigned_workers_data table {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: space-around;
 }

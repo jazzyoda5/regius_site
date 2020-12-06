@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import NewProjectForm, NewClientForm, ProjectAddressForm, ProjectContactInfoForm
+from workers.forms import AssignedToProjectForm
 from django.contrib.auth.decorators import login_required
 from .models import Client
 from .models import Project, ProjectAdress, ProjectContactInfo
+from workers.models import AssignedToProject
 from documents.models import ProjectDocument, ProjectContract
 from documents.models import DocumentTemplate
 from django.db.models import Q
@@ -79,13 +81,14 @@ def project_details(request, project_id):
         contact_info = ProjectContactInfo.objects.get(project=project)
     except ProjectContactInfo.DoesNotExist:
         contact_info = None
+    
 
     context = {
         'project': project,
         'address': address,
         'project_doc': project_doc,
         'contract_doc': contract_doc,
-        'contact_info': contact_info
+        'contact_info': contact_info,
     }
     return render(request, 'projects/project_details.html', context)
 
@@ -104,6 +107,108 @@ def edit_project_details(request, project_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/projekti/' + str(project.id))
+
+
+@login_required
+def project_details_workers(request, project_id):
+    project = Project.objects.get(id=project_id)
+
+    # Get context
+    try:
+        workers_on_project = AssignedToProject.objects.filter(project=project).order_by('start_date')
+    except AssignedToProject.DoesNotExist:
+        workers_on_project = None
+
+    context = {
+        'project': project,
+        'workers_on_project': workers_on_project
+    }
+    return render(request, 'projects/project_details_workers.html', context)
+
+
+# View for assigning workers to projects
+@login_required
+def project_assign_worker(request, project_id):
+    project = Project.objects.get(id=project_id)
+    context = {
+        'project': project
+    }
+    if request.method == 'GET':
+        form = AssignedToProjectForm(initial={'project': project})
+        context['form'] = form
+        return render(request, 'projects/project_assign_worker.html', context)
+
+    elif request.method == 'POST':
+        form = AssignedToProjectForm(request.POST, initial={'project': project})
+        context['form'] = form
+
+        if form.is_valid():
+            # Store date variables
+            project_start = project.project_start_date
+            project_end = project.project_end_date
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+
+            # Check if dates fit with project start and end
+            if dates_are_valid(project_start, project_end, start_date, end_date):
+                
+                # Check if worker is available
+                worker = form.cleaned_data['worker']
+                if worker_is_available(project_start, project_end, start_date, end_date, worker):
+                    form.save()
+                    return HttpResponseRedirect('/projekti/' + str(project.id) + '/delavci/')
+
+                else:
+                    context['worker_not_available'] = True
+                    return render(request, 'projects/project_assign_worker.html', context)
+            else:
+                context['date_error'] = True
+                return render(request, 'projects/project_assign_worker.html', context)
+        else:
+            context['form_not_valid'] = True
+            return render(request, 'projects/project_assign_worker.html', context)
+
+
+# Function to determine if the dates to assign a worker to a project
+# match the start and end dates of a project. 
+def dates_are_valid(project_start, project_end, start_date, end_date):
+    # Print dates
+    print('psd: {}, ped: {}, sd: {}, ed: {}'. format(project_start, project_end, start_date, end_date))
+    
+    # start_date and end_date must be between project_start and project_end
+    if project_start <= start_date <= project_end:
+        if project_start <= end_date <= project_end:
+            return True
+
+    return False
+
+
+# Function to check if worker is available
+def worker_is_available(project_start, project_end, start_date, end_date, worker):
+    already_assigned = AssignedToProject.objects.filter(worker=worker)
+    
+    # If there is no previously stored project for this worker
+    # He is automatically available
+    if len(already_assigned) < 1:
+        return True
+
+    # Comapre previous assignments to determine
+    # If he is available at chosen dates
+    else:
+        for shift in already_assigned:
+            shift_start = shift.start_date
+            shift_end = shift.end_date
+
+            if shift_start <= start_date <= shift_end:
+                return False
+            else:
+                if shift_start <= end_date <= shift_end:
+                    return False
+                else:
+                    if shift_start > start_date and shift_end < end_date:
+                        return False
+
+        return True
 
 
 # Construction site address

@@ -1,12 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from .models import *
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import CreateWorkerForm, WorkerInfoForm
 import json
+from .models import AssignedToProject
+from django.contrib.auth.decorators import login_required
 
 
+def test(request):
+    atp1 = AssignedToProject.objects.get(id=1)
+    start_date = atp1.start_date
+    end_date = atp1.end_date
+    return HttpResponse(start_date + 1)
+
+@login_required
 def workers_overview(request):
     context = {
         'workers': Worker.objects.all()
@@ -14,6 +23,7 @@ def workers_overview(request):
     return render(request, 'workers/workers_overview.html', context)
 
 
+@login_required
 def worker_details(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
 
@@ -48,6 +58,15 @@ def worker_details(request, worker_id):
     return render(request, 'workers/worker_details.html', context)
 
 
+@login_required
+def get_data(request):
+    data = {
+        'a': 100,
+        'b': 10
+    }
+    return JsonResponse(data)
+
+
 class CreateWorker(CreateView):
     template_name = 'workers/create_worker.html'
     form_class = CreateWorkerForm
@@ -57,6 +76,7 @@ class CreateWorker(CreateView):
         return reverse('worker_details', args=(self.object.id,))
 
 
+@login_required
 def edit_worker_info(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
 
@@ -92,7 +112,7 @@ def edit_worker_info(request, worker_id):
                 return HttpResponseRedirect('/delavci/' + str(worker.id))
 
 
-
+@login_required
 def delete_worker(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
     worker.delete()
