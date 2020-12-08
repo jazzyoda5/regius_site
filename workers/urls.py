@@ -4,6 +4,7 @@ from .views import CreateWorker
 
 urlpatterns = [
     path('', views.workers_overview, name='workers_overview'),
+    path('najdi/', views.workers_overview_search, name='workers_overview_search'),
     path('<int:worker_id>/', views.worker_details, name='worker_details'),
     path('<int:worker_id>/izbrisi/', views.delete_worker, name='delete_worker'),
     path('novdelavec/', CreateWorker.as_view(), name='create_worker'),

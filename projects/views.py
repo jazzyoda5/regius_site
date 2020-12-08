@@ -126,6 +126,30 @@ def project_details_workers(request, project_id):
     return render(request, 'projects/project_details_workers.html', context)
 
 
+@login_required
+def project_details_documents(request, project_id):
+    project = Project.objects.get(id=project_id)
+
+    # Context
+    try:
+        project_doc = ProjectDocument.objects.get(project=project)
+    except ProjectDocument.DoesNotExist:
+        project_doc = None
+
+    try:
+        contract_doc = ProjectContract.objects.get(project=project)
+    except ProjectContract.DoesNotExist:
+        contract_doc = None
+
+    context = {
+        'project': project,
+        'project_doc': project_doc,
+        'contract_doc': contract_doc
+    }
+    return render(request, 'projects/project_details_documents.html', context)
+
+
+
 # View for assigning workers to projects
 @login_required
 def project_assign_worker(request, project_id):

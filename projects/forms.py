@@ -68,6 +68,7 @@ class ProjectContactInfoForm(forms.ModelForm):
             'resp_on_site_name': forms.TextInput(attrs={'class': 'form-control'}),
             'resp_on_site_phone_num': forms.TextInput(attrs={'class': 'form-control'}),
             'resp_on_site_email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'client_contract_signer': forms.TextInput(attrs={'class': 'form-control'}),
         }
         labels = {
             'resp_client_name': 'Odgovorna oseba za pogodbo s strani naročnika',

@@ -20,7 +20,7 @@ def submit_login(request):
 
     if user is not None:
         login(request, user)
-        return HttpResponseRedirect('/overview/')
+        return HttpResponseRedirect('/projekti/')
 
     else:
         error = True

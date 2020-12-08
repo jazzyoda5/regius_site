@@ -7,6 +7,7 @@ from .forms import CreateWorkerForm, WorkerInfoForm
 import json
 from .models import AssignedToProject
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 def test(request):
@@ -21,6 +22,19 @@ def workers_overview(request):
         'workers': Worker.objects.all()
     }
     return render(request, 'workers/workers_overview.html', context)
+
+
+# On search submit
+def workers_overview_search(request):
+    q = request.GET.get('q')
+    workers = Worker.objects.filter(
+        Q(first_name__icontains=q) | Q(last_name__icontains=q) | Q(company__icontains=q)
+    )
+    context = {
+        'workers': workers
+    }
+    return render(request, 'workers/workers_overview.html', context)
+
 
 
 @login_required

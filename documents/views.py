@@ -82,7 +82,7 @@ def create_project_doc(request, project_id):
 
     os.remove(os.path.join(BASE_DIR, 'media_cdn/media/', 'temp_doc.docx'))
 
-    return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
+    return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
 
 
 def create_contract_doc(request, project_id):
@@ -164,7 +164,7 @@ def create_contract_doc(request, project_id):
 
     os.remove(os.path.join(BASE_DIR, 'media_cdn/media/', 'temp_doc.docx'))
 
-    return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
+    return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
 
 
 def download(request, path):
@@ -183,11 +183,11 @@ def delete_project_doc(request, document_id):
     document = ProjectDocument.objects.get(id=document_id)
     project = document.project
     document.delete()
-    return HttpResponseRedirect('/projekti/' + str(project.id) + '/')
+    return HttpResponseRedirect('/projekti/' + str(project.id) + '/dokumenti/')
 
 
 def delete_contract_doc(request, document_id):
     document = ProjectContract.objects.get(id=document_id)
     project = document.project
     document.delete()
-    return HttpResponseRedirect('/projekti/' + str(project.id) + '/')
+    return HttpResponseRedirect('/projekti/' + str(project.id) + '/dokumenti/')

@@ -1,6 +1,5 @@
 .form {
     display: flex;
-    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
@@ -14,6 +13,11 @@
 }
 .form-control {
     margin-bottom: 20px;
+}
+.btn-primary {
+    background-color: #c85017;
+    border-color: #c85017;
+    float: right;
 }
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -29,22 +33,24 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-textarea:focus {   
-  box-shadow: none !important;
-}
-.btn-primary {
-    background-color: #c85017;
-    border-color: #c85017;
-    float: right;
+textarea:focus,
+textarea:active:focus,
+textarea:active,
+input[type="text"]:active:focus,
+input[type="password"]:active:focus, 
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    border-color: #c85017 !important;
+    box-shadow: none !important;
+    outline: 0 none;
 }
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus,
 .btn-primary:active:focus {
-    background-color: #a22c00 !important;
-    border-color: #c85017 !important;
-    box-shadow: none !important;
-    outline: 0 none;
+    background-color: #a22c00 !important;    
 }
 .form-title {
     display: flex;

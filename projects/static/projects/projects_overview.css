@@ -56,7 +56,7 @@
     margin: auto;
 }
 .search input:focus {
-    border-color: #914522;;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #946011;
+    border-color: #c85017;;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #c85017;;
     outline: 0 none;
 }

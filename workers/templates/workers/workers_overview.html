@@ -1,4 +1,6 @@
-{% extends "overview/main.html" %} {% load static %} {% block add_styles %}<link
+{% extends "overview/main.html" %} 
+{% block title %}Delavci{% endblock %}
+{% load static %} {% block add_styles %}<link
   rel="stylesheet"
   type="text/css"
   href="{% static 'projects/projects_overview.css' %}"
@@ -15,7 +17,7 @@
 </div>
 <div class="body">
   <div class="search">
-    <form action="#" method="GET">
+    <form action="/delavci/najdi/" method="GET">{% csrf_token %}
       <input type="text" class="form-control" name="q" placeholder="Najdi..." />
       <button class="btn search">
         <svg
