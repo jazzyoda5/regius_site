@@ -8,9 +8,19 @@ from django.http import JsonResponse
 def overview_page(request):
     # Get all current projects
     projects = Project.objects.filter(status='V teku')
+    labels = []
+    start_dates = []
+    end_dates = []
+    for project in projects:
+        labels.append(project.project_name)
+        start_dates.append(project.project_start_date)
+        end_dates.append(project.project_end_date)
     print(projects)
     context = {
-        'username': request.user
+        'username': request.user,
+        'labels': labels,
+        'start_dates': start_dates,
+        'end_dates': end_dates
     }
     return render(request, 'overview/main.html', context)
 
@@ -19,7 +29,7 @@ def overview_page(request):
 def homepage_json_data(request):
 
     # Get all current projects
-    projects = Project.objects.filter(status='V teku')
+    projects = Project.objects.filter(status='V teku').order_by('project_start_date')
     print(projects)
 
     data = {
