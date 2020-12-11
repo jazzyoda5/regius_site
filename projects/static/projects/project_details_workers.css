@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #c85017;
+    color: #6b4633;
 }
 .project_details {
     max-width: 850px;
@@ -27,7 +27,7 @@
 .project_details .header a, 
 .assigned_workers_data a,
 .assigned_workers_data .btn {
-    color: #c85017;
+    color: #ba621c;
     background-color: rgba(255, 255, 255, 0);
     border: none;
 }
@@ -40,7 +40,7 @@
 }
 .assigned_workers_data .btn:hover {
     background-color: rgba(255, 255, 255, 0);
-    color: #691c00;
+    color: #6b4633;
     outline: none;
     border: none;
 }
@@ -48,14 +48,14 @@
 .assigned_workers_data .btn:active, 
 .assigned_workers_data .btn:active:focus {
     background-color: rgba(255, 255, 255, 0);
-    color: #691c00;
+    color: #6b4633;
     outline: none;
     border: none !important;
     box-shadow: none !important;
 }
 .project_details .header a:hover,
 .assigned_workers_data a:hover {
-    color: #691c00;
+    color: #6b4633;
     text-decoration: none;
 }
 .assigned_workers_data ul {

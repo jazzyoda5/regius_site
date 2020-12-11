@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #c85017;
+    color: #ba621c;
 }
 .project_details {
     max-width: 850px;
@@ -27,7 +27,7 @@
     display: flex;
     font-size: 30px;
     float: right !important;
-    color: #c84f17;
+    color: #ba621c;
 }
 .data {
     display: grid;
@@ -58,7 +58,7 @@
     border-radius: 6px;
 }
 .field_data a, .documents a, .assigned_workers a {
-    color: #c84f17;
+    color: #ba621c;
     padding-top: 3px;
     padding-bottom:3px;
 }
@@ -87,7 +87,7 @@
 }
 .icons .btn {
     background-color: white;
-    color: #c84f17;
+    color: #ba621c;
     font-size: 30px;
     padding: 0;
     margin-bottom: 5px;
@@ -114,9 +114,9 @@
     box-shadow: none !important;
 }
 .modal-footer .btn-primary, .documents .btn-primary {
-    background-color: #c84f17;
-    outline-color: #c84f17;
-    border-color: #c84f17;
+    background-color: #ba621c;
+    outline-color: #ba621c;
+    border-color: #ba621c;
 }
 .documents .btn-primary {
     display: flex;
@@ -131,10 +131,10 @@
 .documents .btn-primary:active:focus,
 .documents .btn-primary:hover {
     background-color: #691c00;
-    outline-color: #c84f17;
+    outline-color: #ba621c;
     box-shadow: none !important;
-    outline-color: #c84f17;
-    border-color: #c84f17;
+    outline-color: #ba621c;
+    border-color: #ba621c;
 }
 .main_data hr {
     width: 80%;
@@ -148,7 +148,7 @@
     padding: 10px;
 }
 .edit_contacts a {
-    color: #c84f17;
+    color: #ba621c;
     margin-right: 20px;
     margin-bottom: 10px;
 }

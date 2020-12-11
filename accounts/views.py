@@ -4,7 +4,11 @@ from django.contrib.auth import authenticate, login, logout, views, update_sessi
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import (UserCreationForm, PasswordChangeForm)
 from django.contrib.auth.decorators import login_required
-from .forms import SignupForm, ChangePasswordForm, EditProfileForm
+from .forms import (SignupForm, 
+ChangePasswordForm, 
+EditProfileForm, 
+ResetPasswordForm,
+PasswordSetForm)
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -29,7 +33,6 @@ def submit_login(request):
 
 @login_required
 def submit_logout(request):
-    user = request.user
     logout(request)
     return HttpResponseRedirect('/')
 
@@ -116,3 +119,14 @@ def EditProfile(request):
             form.save()
             return HttpResponseRedirect('/accounts/nastavitve/')
         return HttpResponse('No')
+
+
+class PasswordReset(views.PasswordResetView):
+    template_name = 'accounts/reset_password.html'
+    form_class = ResetPasswordForm
+
+
+class PasswordResetConfirm(views.PasswordResetConfirmView):
+    template_name = 'accounts/reset_password_confirm.html'
+    form_class = PasswordSetForm
+

@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #c85017;
+    color: #ba621c;
 }
 .body {
     margin: auto;
@@ -32,10 +32,10 @@
 }
 .project a {
     margin-left: -15px;
-    color: #e9692d;
+    color: #ba621c;
 }
 .project a:hover {
-    color: #c85017;
+    color: #6b4633;
 }
 .head {
     display: flex;
@@ -48,7 +48,7 @@
     margin-bottom: 20px;
 }
 .search button:hover {
-    color: #c85017;
+    color: #f8dfb8;
 }
 .search form {
     display: flex;
@@ -56,7 +56,7 @@
     margin: auto;
 }
 .search input:focus {
-    border-color: #c85017;;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #c85017;;
+    border-color: #f8dfb8;;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #ba621c;;
     outline: 0 none;
 }

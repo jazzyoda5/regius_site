@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #c85017;
+    color: #ba621c;
 }
 .form {
     display: flex;
@@ -43,11 +43,11 @@ input[type="color"]:focus,
 textarea:focus,
 select:focus {   
   box-shadow: none !important;
-  border-color: #c85017 !important;
+  border-color: #ba621c !important;
 }
 .btn-primary {
-    background-color: #c85017;
-    border-color: #c85017;
+    background-color: #ba621c;
+    border-color: #ba621c;
     float: right;
 }
 .btn-primary:hover,
@@ -55,7 +55,7 @@ select:focus {
 .btn-primary:focus,
 .btn-primary:active:focus {
     background-color: #a22c00 !important;
-    border-color: #c85017 !important;
+    border-color: #ba621c !important;
     box-shadow: none !important;
     outline: 0 none;
 }

@@ -1,0 +1,14 @@
+.overview {
+    background-color: white;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 16px;
+}
+.graph_container {
+    padding: 10px;
+    border-style: solid;
+    border-color: #a0a0a0;
+    border-width: 1px;
+    border-radius: 10px;
+}

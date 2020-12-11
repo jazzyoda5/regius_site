@@ -1,5 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import (UserCreationForm, 
+PasswordChangeForm,
+PasswordResetForm,
+SetPasswordForm)
 from django.contrib.auth.models import User
 
 
@@ -81,3 +84,43 @@ class ChangePasswordForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ['old_password', 'new_password1', 'new_password2']
+
+
+class ResetPasswordForm(PasswordResetForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ResetPasswordForm, self).__init__(*args, **kwargs)
+        self.fields['email'].label = 'Email'
+        self.fields['email'].widget = forms.EmailInput(
+            {'class': 'form-control'})
+ 
+    class Meta:
+        fields = '__all__'
+
+
+class PasswordSetForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordSetForm, self).__init__(*args, **kwargs)
+        self.fields['new_password1'].label = 'Novo geslo'
+        self.fields['new_password1'].widget = forms.PasswordInput(
+            {'class': 'form-control'})
+        self.fields['new_password2'].label = 'Potrditev gesla'
+        self.fields['new_password2'].widget = forms.PasswordInput(
+            {'class': 'form-control'})
+        self.fields['new_password1'].help_text = """ 
+        <ul class="password-help_text">
+        <li>
+        <p>Geslo mora biti dolgo vsaj 8 znakov</p>
+        </li>
+        <li>
+        <p>Geslo mora vsebovati črke in številke</p>
+        </li>
+        <li>
+        <p>Geslo ne sme biti preveč podobno vašim osebnim podatkom</p>
+        </li>
+        </ul>
+        """
+ 
+    class Meta:
+        fields = '__all__'
+

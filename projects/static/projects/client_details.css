@@ -15,7 +15,7 @@
     display: flex;
     font-size: 30px;
     float: right !important;
-    color: #c84f17;
+    color: #ba621c;
 }
 .client_name a:hover {
     color: #a22c00;
@@ -51,7 +51,7 @@
     padding:13px;
 }
 .projects a {
-    color: #c84f17;
+    color: #ba621c;
 }
 .projects a:hover {
     color: #a22c00;

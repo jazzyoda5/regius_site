@@ -1,7 +1,7 @@
 var endpoint = "/overview/convert/projectsdata/";
-var labels = [''];
-var start_dates = [''];
-var end_dates = [''];
+var labels = [];
+var start_dates = [];
+var end_dates = [];
 
 $.ajax({
   method: "GET",
@@ -25,12 +25,6 @@ $.ajax({
 
 function drawChart() {
   var timeFormat = "DD/MM/YYYY";
-
-  // Helper functions 
-  /*
-  function newDate(days) {
-    return moment().add(days, "d").toDate();
-  } */
 
   // Function to parse the dates so ChartJS can read them
   function newDateString(days) {
@@ -62,8 +56,8 @@ the date from django is form today
 
       let set = {
         label: "Ime projekta",
-        backgroundColor: "rgba(246,156,85,4)",
-        borderColor: "rgba(246,156,85,4)",
+        backgroundColor: "#253812b0",
+        borderColor: "#253812b0",
         fill: false,
         borderWidth: 15,
         pointRadius: 0,
