@@ -1,4 +1,8 @@
-from .models import Project, Client, ProjectAdress, ProjectContactInfo
+from .models import (Project, 
+Client, 
+ProjectAdress, 
+ProjectContactInfo,
+ProjectAnex)
 from django import forms
 
 class NewProjectForm(forms.ModelForm):
@@ -98,5 +102,23 @@ class NewClientForm(forms.ModelForm):
         }
         labels = {
             'name': 'Ime podjetja',
+        }
+
+
+class NewAnexForm(forms.ModelForm):
+
+    class Meta:
+        model = ProjectAnex
+        fields = [
+            'project',
+            'start',
+            'end',
+            'value'
+        ]
+        widgets = {
+            'start': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+            'end': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+            'value': forms.NumberInput(attrs={'class': 'form-control', 'step': '0,25'}),
+            'project': forms.HiddenInput()
         }
 

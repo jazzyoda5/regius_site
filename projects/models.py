@@ -94,6 +94,12 @@ class ProjectContactInfo(models.Model):
         return self.project.project_name
 
 
+# Podatki o aneksu. Dejanski dokument je v appu documents.
+class ProjectAnex(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
+    start = models.DateField(_("Od"), auto_now=False, auto_now_add=False)
+    end = models.DateField(_("Do"), auto_now=False, auto_now_add=False)
+    value = models.DecimalField(_("Vrednost"), max_digits=8, decimal_places=2)
 
 
     

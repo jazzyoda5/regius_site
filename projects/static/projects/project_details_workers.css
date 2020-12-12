@@ -58,6 +58,17 @@
     color: #6b4633;
     text-decoration: none;
 }
+.assigned_workers_data {
+    padding: 15px;
+}
+.table {
+    border-radius: 12px;
+}
+.table thead tr {
+    
+}
+
+/*
 .assigned_workers_data ul {
     width: 100%;
     padding-right: 30px;
@@ -75,7 +86,7 @@
     border-radius: 8px;
     margin-bottom: 8px;
 }
-
+*/
 .row-headers li {
     background-color: white;
 }

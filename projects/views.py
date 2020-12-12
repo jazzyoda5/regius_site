@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .forms import NewProjectForm, NewClientForm, ProjectAddressForm, ProjectContactInfoForm
+from .forms import (NewProjectForm, 
+NewClientForm, 
+ProjectAddressForm, 
+ProjectContactInfoForm,
+NewAnexForm)
 from workers.forms import AssignedToProjectForm
 from django.contrib.auth.decorators import login_required
 from .models import Client
@@ -393,4 +397,47 @@ def edit_project_contact_info(request, project_id):
             form.save()
             return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
 
+
+def add_anex(request, project_id):
+    project = Project.objects.get(id=project_id)
+    template = 'projects/add_anex.html'
+    print(project)
+    if request.method == 'GET':
+        context = {
+            'form': NewAnexForm(initial={'project': project}),
+            'project': project
+        }
+        return render(request, template, context)
+
+    elif request.method == 'POST':
+        form = NewAnexForm(request.POST)
+        if form.is_valid():
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
+            # Check if inputed dates are after the end of project stated on the contract
+            if correct_dates(start, end, project):
+                form.save()
+                return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
+
+            context = {
+                'form': form,
+                'project': project,
+                'incorrect_dates': True
+            }
+            return render(request, template, context)
+        """
+        context = {
+                'form': form,
+                'project': project,
+                'form_not_valid': True
+            }
+        return render(request, template, context)
+"""
+
+def correct_dates(start, end, project):
+    project_end = project.project_end_date
+    if start < project_end and end < project_end:
+        return True
+    else:
+        return False
 

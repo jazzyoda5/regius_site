@@ -1,0 +1,75 @@
+.projects-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.projects-nav a {
+    color: black;
+}
+.projects-nav a:hover {
+    color: #ba621c;
+}
+.container {
+    margin: auto;
+    max-width: 850px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+
+}
+.form {
+    padding: 2vh;
+    margin-bottom: 15px;
+}
+.date_field_wrapper {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px;
+}
+.date_field_wrapper select {
+    margin-left: 20px;
+}
+.date_field_wrapper label {
+    margin-top: 5px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+textarea:focus,
+.form-control:focus {   
+  box-shadow: none !important;
+  border-color: #ba621c;
+}
+.btn-primary {
+    background-color: #ba621c;
+    border-color: #ba621c;
+    float: right;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: #a22c00 !important;
+    border-color: #ba621c !important;
+    box-shadow: none !important;
+    outline: 0 none;
+}
+.note {
+    width: max-content;
+    background-color: #f8dfb8;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+}

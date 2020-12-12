@@ -32,3 +32,14 @@ class ProjectContract(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.contract.storage.delete(self.contract.name)
         super().delete()
+
+
+# Podatki za izpolnjevanje so shranjeni v projects appu.
+class ProjectAnexDoc(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    anex_doc = models.FileField(upload_to='media')
+    title = models.CharField(max_length=50)
+
+    def delete(self, using=None, keep_parents=False):
+        self.anex_doc.storage.delete(self.anex_doc.name)
+        super().delete()

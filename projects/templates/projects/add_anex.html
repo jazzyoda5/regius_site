@@ -1,0 +1,66 @@
+{% extends 'overview/main.html' %} 
+{% load static %}
+{% block add_styles %}<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'projects/add_anex.css' %}"
+/>{% endblock %} 
+{% block title %}
+{{ project.project_name }} - Nov aneks
+{% endblock %}
+
+{% block content %}
+<div class="projects-nav">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/{{project.id}}/"
+        >Osnovni podatki</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/projekti/{{project.id}}/delavci/">Delavci</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="/projekti/{{project.id}}/dokumenti/">Dokumenti</a>
+    </li>
+  </ul>
+</div>
+<div class="container">
+<h4>Nov aneks - {{ project.project_name }}</h4>
+<div class="form">
+  <form method="POST"> {% csrf_token %}
+        <p class="note"><strong>Trajanje projekta</strong> : {{ project.project_start_date }} - {{ project.project_end_date }}</p>
+
+    {% for field in form %}
+        {% if field.label == 'Od' or field.label == 'Do'%}
+            <div class="date_field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% elif field.label == 'Project' %}
+        {{ field }}
+        {% else %}
+              <div class="field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+        {% endif %}
+    {% endfor %}
+    {% if incorrect_dates %}
+    <div class="alert alert-danger" role="alert">
+      Datumi se ne ujemajo z datumi na pogodbi!
+    </div>
+    {% elif form_not_valid %}
+    <div class="alert alert-danger" role="alert">
+      Izpolnite vsa polja!
+    </div>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Potrdi</button>
+
+  </form>
+</div>
+
+</div>
+
+{% endblock %}
