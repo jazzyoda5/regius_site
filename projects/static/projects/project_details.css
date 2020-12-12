@@ -152,7 +152,8 @@
     margin-right: 20px;
     margin-bottom: 10px;
 }
-.edit_contacts a:hover {
+.edit_contacts a:hover,
+.documents_header a:hover {
     color: #691c00;
     text-decoration: none;
 }
@@ -166,4 +167,12 @@
     width: 100%;
     margin: auto;
     justify-content: space-around;
+}
+.documents_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.documents_header a {
+    color: #ba621c;
 }
