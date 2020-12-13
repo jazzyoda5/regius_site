@@ -52,7 +52,7 @@
 }
 .field_data a,
 .documents a {
-  color: #c84f17;
+  color: #d85408;
   padding-top: 3px;
   padding-bottom: 3px;
 }
@@ -64,7 +64,7 @@
 }
 .header a {
   background-color: white;
-  color: #c84f17;
+  color: #d85408;
   font-size: 30px;
   padding: 0;
   margin-bottom: 5px;
@@ -109,11 +109,11 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 textarea:focus {
   box-shadow: none !important;
-  border-color: #c84f17;
+  border-color: #d85408;
 }
 .password_change .btn-primary {
-  background-color: #c84f17;
-  border-color: #c84f17;
+  background-color: #d85408;
+  border-color: #d85408;
 }
 .password_change .btn-primary:hover,
 .btn-primary:active:focus {

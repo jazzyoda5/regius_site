@@ -113,12 +113,14 @@ class NewAnexForm(forms.ModelForm):
             'project',
             'start',
             'end',
-            'value'
+            'value',
+            'anex_num'
         ]
         widgets = {
             'start': forms.SelectDateWidget(attrs={'class': 'form-control'}),
             'end': forms.SelectDateWidget(attrs={'class': 'form-control'}),
             'value': forms.NumberInput(attrs={'class': 'form-control', 'step': '0,25'}),
-            'project': forms.HiddenInput()
+            'project': forms.HiddenInput(),
+            'anex_num': forms.HiddenInput()
         }
 

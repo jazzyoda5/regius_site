@@ -6,7 +6,7 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #be4300; /*
+    background-color: #d85408; /*
     background-image: linear-gradient(62deg, #9c3212 50%, #ffca43 100%);
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -45,7 +45,7 @@ body {
     color: #253812;
 }
 .dropdown a:hover {
-    color: #c85017;
+    color: #d85408;
 }
 .dropdown a:focus {
     background-color: #253812;

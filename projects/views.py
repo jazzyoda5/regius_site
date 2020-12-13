@@ -8,10 +8,15 @@ NewAnexForm)
 from workers.forms import AssignedToProjectForm
 from django.contrib.auth.decorators import login_required
 from .models import Client
-from .models import Project, ProjectAdress, ProjectContactInfo
+from .models import (Project, 
+ProjectAdress, 
+ProjectContactInfo,
+ProjectAnex)
 from workers.models import AssignedToProject
-from documents.models import ProjectDocument, ProjectContract
-from documents.models import DocumentTemplate
+from documents.models import (ProjectDocument, 
+ProjectContract,
+DocumentTemplate,
+ProjectAnexDoc)
 from django.db.models import Q
 
 
@@ -85,7 +90,6 @@ def project_details(request, project_id):
         contact_info = ProjectContactInfo.objects.get(project=project)
     except ProjectContactInfo.DoesNotExist:
         contact_info = None
-    
 
     context = {
         'project': project,
@@ -94,9 +98,28 @@ def project_details(request, project_id):
         'contract_doc': contract_doc,
         'contact_info': contact_info,
     }
+
+    try:
+        anex_data = ProjectAnex.objects.filter(project=project)
+        anex_end_date = project.project_end_date
+        value = project.contract_value
+        for anex in anex_data:
+            if anex.end > anex_end_date:
+                anex_end_date = anex.end
+            value += anex.value
+        context['contract_value'] = value
+        context['anex_end_date'] = anex_end_date
+
+    except ProjectAnex.DoesNotExist:
+        anex_data = None
+        context['contract_value'] = project.contract_value
+
+    # Find end date if anexes exist
+
     return render(request, 'projects/project_details.html', context)
 
 
+@login_required
 def edit_project_details(request, project_id):
     project = Project.objects.get(id=project_id)
     if request.method == "GET":
@@ -150,6 +173,20 @@ def project_details_documents(request, project_id):
         'project_doc': project_doc,
         'contract_doc': contract_doc
     }
+
+    # Check if there is already data about anex extension created
+    # Then check if the document is also already created
+    # There can be more than one anex doc so all of them have to be displayed
+
+    # Get all anex_data objects
+    anex_data = ProjectAnex.objects.filter(project=project)
+    print(anex_data)
+    context['anex_data'] = anex_data
+    # For each of anex_data obj check, if documents were created
+    # And create an array with all of them
+    anex_docs_arr = []
+
+
     return render(request, 'projects/project_details_documents.html', context)
 
 
@@ -280,11 +317,12 @@ def edit_project_address(request, project_id):
 
 @login_required
 def add_client(request):
+    template = 'projects/add_client.html'
     if request.method == "GET":
         context = {
             'form': NewClientForm
         }
-        return render(request, 'projects/add_client.html', context)
+        return render(request, template, context)
 
     # If form is submitted
     elif request.method == "POST":
@@ -303,7 +341,7 @@ def add_client(request):
                     'form': NewClientForm,
                     'client_exists': True
                 }
-                return render(request, 'projects/add_client.html', context)
+                return render(request, template, context)
 
 
 @login_required
@@ -383,6 +421,7 @@ def add_project_contact_info(request, project_id):
                 return render(request, 'projects/add_client.html', context)
 
 
+@login_required
 def edit_project_contact_info(request, project_id):
     contact_info = ProjectContactInfo.objects.get(project=project_id)
     if request.method == "GET":
@@ -398,13 +437,19 @@ def edit_project_contact_info(request, project_id):
             return HttpResponseRedirect('/projekti/' + str(project_id) + '/')
 
 
+@login_required
 def add_anex(request, project_id):
     project = Project.objects.get(id=project_id)
     template = 'projects/add_anex.html'
-    print(project)
+
+    # Check if there is already previous anex docs created so that 
+    # We can assign a number to this anex doc
+    anex_docs = ProjectAnex.objects.filter(project=project)
+    anex_num = int(len(anex_docs)) + 1
+
     if request.method == 'GET':
         context = {
-            'form': NewAnexForm(initial={'project': project}),
+            'form': NewAnexForm(initial={'project': project, 'anex_num': anex_num}),
             'project': project
         }
         return render(request, template, context)
@@ -425,19 +470,20 @@ def add_anex(request, project_id):
                 'incorrect_dates': True
             }
             return render(request, template, context)
-        """
+
         context = {
                 'form': form,
                 'project': project,
                 'form_not_valid': True
             }
         return render(request, template, context)
-"""
+
 
 def correct_dates(start, end, project):
     project_end = project.project_end_date
-    if start < project_end and end < project_end:
+    if start > project_end and end > project_end:
         return True
     else:
         return False
+
 

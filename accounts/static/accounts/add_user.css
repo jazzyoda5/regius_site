@@ -15,8 +15,8 @@
     margin-bottom: 20px;
 }
 .btn-primary {
-    background-color: #c85017;
-    border-color: #c85017;
+    background-color: #d85408;
+    border-color: #d85408;
     float: right;
 }
 input[type="text"]:focus,
@@ -42,7 +42,7 @@ input[type="password"]:active:focus,
 .btn-primary:active,
 .btn-primary:focus,
 .btn-primary:active:focus {
-    border-color: #c85017 !important;
+    border-color: #d85408 !important;
     box-shadow: none !important;
     outline: 0 none;
 }

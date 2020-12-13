@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #ba621c;
+    color: #d85408;
 }
 .form {
     display: flex;
@@ -39,11 +39,11 @@ input[type="color"]:focus,
 textarea:focus,
 .form-control:focus {   
   box-shadow: none !important;
-  border-color: #ba621c;
+  border-color: #d85408;
 }
 .btn-primary {
-    background-color: #ba621c;
-    border-color: #ba621c;
+    background-color: #d85408;
+    border-color: #d85408;
     float: right;
 }
 .btn-primary:hover,
@@ -51,7 +51,7 @@ textarea:focus,
 .btn-primary:focus,
 .btn-primary:active:focus {
     background-color: #a22c00 !important;
-    border-color: #ba621c !important;
+    border-color: #d85408 !important;
     box-shadow: none !important;
     outline: 0 none;
 }

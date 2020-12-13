@@ -38,7 +38,7 @@ background-image: linear-gradient(62deg, #d03000 0%, #F7CE68 100%);
     border-radius: 20px;
     width: 70%;
     height: 50px;
-    background-color: #c85017;
+    background-color: #d85408;
     border: none;
     margin-top: 5%;
     margin-left: 15%;
@@ -47,24 +47,24 @@ background-image: linear-gradient(62deg, #d03000 0%, #F7CE68 100%);
 }
 .login button:hover {
     border-style: solid;
-    border-color: #c85017;
+    border-color: #d85408;
     background-color: white;
-    color: #c85017;
+    color: #d85408;
 }
 .login button:active {
     border-style: solid;
     border-color: #ffb799;
-    background-color: #c85017;
+    background-color: #d85408;
     color: #ffb799;
 }
 .login button:focus {
     border-style: solid;
     border-color: #ffb799;
-    background-color: #c85017;
+    background-color: #d85408;
     color: #ffb799;
 }
 .login a {
-    color: #c85017;
+    color: #d85408;
 }
 .login a:hover {
     text-decoration: none;

@@ -1,5 +1,5 @@
 from django.db import models
-from projects.models import Project
+from projects.models import Project, ProjectAnex
 
 class DocumentTemplate(models.Model):
 
@@ -37,6 +37,7 @@ class ProjectContract(models.Model):
 # Podatki za izpolnjevanje so shranjeni v projects appu.
 class ProjectAnexDoc(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    anex_data = models.OneToOneField(ProjectAnex, on_delete=models.CASCADE)
     anex_doc = models.FileField(upload_to='media')
     title = models.CharField(max_length=50)
 

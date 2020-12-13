@@ -8,7 +8,7 @@
     color: black;
 }
 .projects-nav a:hover {
-    color: #ba621c;
+    color: #d85408;
 }
 .body {
     margin: auto;
@@ -32,7 +32,7 @@
 }
 .project a {
     margin-left: -15px;
-    color: #ba621c;
+    color: #d85408;
 }
 .project a:hover {
     color: #6b4633;
@@ -48,7 +48,7 @@
     margin-bottom: 20px;
 }
 .search button:hover {
-    color: #f8dfb8;
+    color: #d85408;
 }
 .search form {
     display: flex;

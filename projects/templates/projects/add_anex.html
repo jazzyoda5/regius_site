@@ -39,6 +39,8 @@
             </div>
         {% elif field.label == 'Project' %}
         {{ field }}
+        {% elif field.label == 'Številka aneksa' %}
+        {{ field }}
         {% else %}
               <div class="field_wrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
 
