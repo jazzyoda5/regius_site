@@ -455,7 +455,7 @@ def add_anex(request, project_id):
         return render(request, template, context)
 
     elif request.method == 'POST':
-        form = NewAnexForm(request.POST)
+        form = NewAnexForm(request.POST, initial={'project': project, 'anex_num': anex_num})
         if form.is_valid():
             start = form.cleaned_data['start']
             end = form.cleaned_data['end']
@@ -485,5 +485,11 @@ def correct_dates(start, end, project):
         return True
     else:
         return False
+
+
+def delete_anex(request, project_id, anex_id):
+    anex_obj = ProjectAnex.objects.get(project=project_id, id=anex_id)
+    anex_obj.delete()
+    return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
 
 

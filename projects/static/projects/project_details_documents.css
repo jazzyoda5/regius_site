@@ -1,0 +1,113 @@
+.projects-nav ul {
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(179, 179, 179);
+    border-bottom-width: 1px;
+}
+.projects-nav a {
+    color: black;
+}
+.projects-nav a:hover {
+    color: #ba621c;
+}
+.project_details {
+    max-width: 850px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+.documents_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.documents_header a {
+    color: #ba621c;
+}
+.documents_header .dropdown .btn {
+    background-color: white;
+    color: #ba621c;
+    border: none;
+    outline: none;
+}
+.documents_header .dropdown .btn:hover,
+.documents_header .dropdown .btn:active,
+.documents_header .dropdown .btn:focus,
+.documents_header .dropdown .btn:active:focus {
+    color: #691c00;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+}
+.documents_header .dropdown-item {
+    background-color: white;
+    color: #ba621c;
+    border: none;
+    outline: none;
+}
+.documents_header .dropdown-item:hover,
+.documents_header .dropdown-item:active,
+.documents_header .dropdown-item:focus,
+.documents_header .dropdown-item:active:focus {
+    color: #691c00;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+}
+/* .document .btn-primary:focus,
+.document .btn-primary:active:focus,
+.document .btn-primary:hover */
+#delete-anex:hover,
+#delete-anex:focus,
+#delete-anex:active:focus {
+    color: #691c00;
+    box-shadow: none !important;
+}
+.document .btn-primary:focus,
+.document .btn-primary:active:focus,
+.document .btn-primary:hover {
+    background-color: #691c00;
+    outline-color: #ba621c;
+    box-shadow: none !important;
+    outline-color: #ba621c;
+    border-color: #ba621c;
+}
+.document .btn-primary {
+    background-color: #ba621c;
+    outline-color: #ba621c;
+    border-color: #ba621c;
+}
+#delete-anex {
+    background-color: #f0f0f0 !important;
+    border: none;
+    color: #ba621c;
+}
+.documents li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+.documents {
+    background-color: #f0f0f0 !important;
+    min-width: 300px;
+    border-radius: 8px;
+    margin: 10px;
+}
+.documents p {
+    font-style: italic;
+    color: gray;
+}
+.documents a {
+    color: #ba621c;
+    padding-top: 3px;
+    padding-bottom:3px;
+}
+.documents a:hover {
+    color: #691c00;
+    text-decoration: none;
+}

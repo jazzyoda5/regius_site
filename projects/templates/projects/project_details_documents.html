@@ -1,168 +1,197 @@
-{% extends 'overview/main.html' %} 
-{% load static %}
-{% block add_styles %}<link
+{% extends 'overview/main.html' %} {% load static %} {% block add_styles %}<link
   rel="stylesheet"
   type="text/css"
-  href="{% static 'projects/project_details.css' %}"
-/>{% endblock %} 
-{% block title %}
-{{ project.project_name }} - Dokumenti
-{% endblock %}
-
-{% block content %}
+  href="{% static 'projects/project_details_documents.css' %}"
+/>{% endblock %} {% block title %} {{ project.project_name }} - Dokumenti {% endblock %} {% block content %}
 <div class="projects-nav">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="/projekti/{{project.id}}/"
-        >Osnovni podatki</a
-      >
+      <a class="nav-link" href="/projekti/{{project.id}}/">Osnovni podatki</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/projekti/{{project.id}}/delavci/">Delavci</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="/projekti/{{project.id}}/dokumenti/">Dokumenti</a>
+      <a class="nav-link active" href="/projekti/{{project.id}}/dokumenti/"
+        >Dokumenti</a
+      >
     </li>
   </ul>
 </div>
 <div class="project_details">
-      <div class="documents_header">
-        <h3>
-          Dokumenti - {{ project.project_name }}
-        </h3>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dodaj prilogo
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <a class="dropdown-item" href="/projekti/{{project.id}}/dokumenti/dodajaneks/">Aneks</a>
-          </div>
-        </div>
+  <div class="documents_header">
+    <h3>Dokumenti - {{ project.project_name }}</h3>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenu2"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Dodaj prilogo
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <a
+          class="dropdown-item"
+          href="/projekti/{{project.id}}/dokumenti/dodajaneks/"
+          >Aneks</a
+        >
       </div>
-    <div class="documents">
+    </div>
+  </div>
+  <div class="documents">
     <div class="document">
-        <ul>
+      <ul>
         <li>
-            {% if project_doc %}
-            <p>Projektni list</p>
+          {% if project_doc %}
+          <p>Projektni list</p>
 
-            <a
+          <a
             href="{{project_doc.project_doc.url}}"
             download="{{project_doc.project_doc.url}}"
             >{{ project_doc.title }}.docx</a
-            >
-            <form
+          >
+          <form
             action="/dokumenti/izbrisi-projektni-list/{{project_doc.id}}/"
             method="Post"
-            >
+          >
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-                <svg
+              <svg
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
                 class="bi bi-trash"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
-                >
+              >
                 <path
-                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
                 />
                 <path
-                    fill-rule="evenodd"
-                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                 />
-                </svg>
+              </svg>
             </button>
-            </form>
-            {% else %}
-            <p>Projektni list</p>
-            <a href="/dokumenti/projektnilist/{{ project.id }}"
+          </form>
+          {% else %}
+          <p>Projektni list</p>
+          <a href="/dokumenti/projektnilist/{{ project.id }}"
             >Pripravi dokument</a
-            >
-            {% endif %}
+          >
+          {% endif %}
         </li>
 
         <li>
-            {% if contract_doc %}
-            <p>Pogodba</p>
+          {% if contract_doc %}
+          <p>Pogodba</p>
 
-            <a
+          <a
             href="{{contract_doc.contract.url}}"
             download="{{contract_doc.contract.url}}"
             >{{ contract_doc.title }}.docx</a
-            >
-            <form
+          >
+          <form
             action="/dokumenti/izbrisi-pogodba/{{contract_doc.id}}/"
             method="Post"
-            >
+          >
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-                <svg
+              <svg
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
                 class="bi bi-trash"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
-                >
+              >
                 <path
-                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
                 />
                 <path
-                    fill-rule="evenodd"
-                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                 />
-                </svg>
+              </svg>
             </button>
-            </form>
-            {% else %}
-            <p>Pogodba</p>
-            <a href="/dokumenti/pogodba/{{ project.id }}">Pripravi dokument</a>
-            {% endif %}
+          </form>
+          {% else %}
+          <p>Pogodba</p>
+          <a href="/dokumenti/pogodba/{{ project.id }}">Pripravi dokument</a>
+          {% endif %}
         </li>
         {% for anex in anex_data %}
         <li>
-            {% if anex_doc %}
-            <p>Aneks št. {{ anex.anex_num }}</p>
+          {% if anex_doc %}
+          <p>Aneks št. {{ anex.anex_num }}</p>
 
-            <a
+          <a
             href="{{contract_doc.contract.url}}"
             download="{{contract_doc.contract.url}}"
             >{{ contract_doc.title }}.docx</a
-            >
-            <form
+          >
+          <form
             action="/dokumenti/izbrisi-pogodba/{{contract_doc.id}}/"
             method="Post"
-            >
+          >
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-                <svg
+              <svg
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
                 class="bi bi-trash"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
-                >
+              >
                 <path
-                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
                 />
                 <path
-                    fill-rule="evenodd"
-                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                 />
-                </svg>
+              </svg>
             </button>
-            </form>
-            {% else %}
-            <p>Aneks št. {{ anex.anex_num }}</p>
-            <a href="/dokumenti/pogodba/{{ project.id }}">Pripravi dokument</a>
-            {% endif %}
+          </form>
+          {% else %}
+          <p>Aneks št. {{ anex.anex_num }}</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal" id="delete-anex">
+            Odstrani aneks
+          </button>
+          <div
+              class="modal fade"
+              id="delete-modal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <p>Ali ste prepričani, da želite odstraniti podatke o aneksu za ta projekt?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Prekliči
+                    </button>
+                    <form action="/projekti/{{project.id}}/dokumenti/odstranianeks/{{ anex.id }}/" method="POST">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-primary">Odstrani</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <a href="/dokumenti/aneks/{{ project.id }}/{{ anex.id }}/">Pripravi dokument</a>
+          {% endif %}
         </li>
         {% endfor %}
-        </ul>
+      </ul>
     </div>
-    </div>
+  </div>
 </div>
 {% endblock %}

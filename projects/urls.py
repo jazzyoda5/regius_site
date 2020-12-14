@@ -12,6 +12,7 @@ urlpatterns = [
     path('<int:project_id>/delavci/', views.project_details_workers),
     path('<int:project_id>/dokumenti/', views.project_details_documents),
     path('<int:project_id>/dokumenti/dodajaneks/', views.add_anex, name='add_anex'),
+    path('<int:project_id>/dokumenti/odstranianeks/<int:anex_id>/', views.delete_anex, name='delete_anex'),
     path('<int:project_id>/dodajdelavca/', views.project_assign_worker),
     path('kontaktnipodatki/<int:project_id>', views.add_project_contact_info),
     path('kontaktnipodatki/<int:project_id>/uredi/', views.edit_project_contact_info),
