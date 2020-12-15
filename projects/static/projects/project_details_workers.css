@@ -15,7 +15,7 @@
     margin: auto;
     background-color: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
 }
 .project_details .header {
     display: flex;
@@ -26,27 +26,27 @@
 }
 .project_details .header a, 
 .assigned_workers_data a,
-.assigned_workers_data .btn {
+.assigned_workers_data .btn-primary {
     color: #d85408;
     background-color: rgba(255, 255, 255, 0);
     border: none;
 }
-.assigned_workers_data .btn {
+.assigned_workers_data .btn-primary {
     margin-top: -7px;
 }
 .assigned_workers_data a,
-.assigned_workers_data .btn {
+.assigned_workers_data .btn-primary {
     font-size: 24px;
 }
-.assigned_workers_data .btn:hover {
+.assigned_workers_data .btn-primary:hover {
     background-color: rgba(255, 255, 255, 0);
     color: #6b4633;
     outline: none;
     border: none;
 }
-.assigned_workers_data .btn:focus, 
-.assigned_workers_data .btn:active, 
-.assigned_workers_data .btn:active:focus {
+.assigned_workers_data .btn-primary:focus, 
+.assigned_workers_data .btn-primary:active, 
+.assigned_workers_data .btn-primary:active:focus {
     background-color: rgba(255, 255, 255, 0);
     color: #6b4633;
     outline: none;
@@ -60,12 +60,16 @@
 }
 .assigned_workers_data {
     padding: 15px;
+    background-color: #e6e6e6;
+    border-radius: 12px;    
+    padding-bottom: 0;
 }
-.table {
-    border-radius: 12px;
+.table thead th {
+    color: gray;
+    font-weight: normal;
 }
-.table thead tr {
-    
+.table tbody th {
+    font-weight: 500;
 }
 
 /*

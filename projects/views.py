@@ -22,7 +22,7 @@ from django.db.models import Q
 
 @login_required
 def project_overview(request):
-    all_projects = Project.objects.all()
+    all_projects = Project.objects.all().order_by('pub_date')[:2]
     context = {
         'projects': all_projects
     }
@@ -180,101 +180,26 @@ def project_details_documents(request, project_id):
 
     # Get all anex_data objects
     anex_data = ProjectAnex.objects.filter(project=project)
-    print(anex_data)
     context['anex_data'] = anex_data
+
     # For each of anex_data obj check, if documents were created
-    # And create an array with all of them
-    anex_docs_arr = []
+    # And create a dictionary with all of them
+    # Where dict key is the id of ProjectAnexDoc object
+    anex_docs = {}
+    docs = ProjectAnexDoc.objects.filter(project=project)
+
+    for anex in anex_data:
+        try:
+            doc = ProjectAnexDoc.objects.get(anex_data=anex)
+            setattr(anex, 'doc', doc)
+        except ProjectAnexDoc.DoesNotExist:
+            pass
+
+    
+
 
 
     return render(request, 'projects/project_details_documents.html', context)
-
-
-
-# View for assigning workers to projects
-@login_required
-def project_assign_worker(request, project_id):
-    project = Project.objects.get(id=project_id)
-    context = {
-        'project': project
-    }
-    if request.method == 'GET':
-        form = AssignedToProjectForm(initial={'project': project})
-        context['form'] = form
-        return render(request, 'projects/project_assign_worker.html', context)
-
-    elif request.method == 'POST':
-        form = AssignedToProjectForm(request.POST, initial={'project': project})
-        context['form'] = form
-
-        if form.is_valid():
-            # Store date variables
-            project_start = project.project_start_date
-            project_end = project.project_end_date
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-
-            # Check if dates fit with project start and end
-            if dates_are_valid(project_start, project_end, start_date, end_date):
-                
-                # Check if worker is available
-                worker = form.cleaned_data['worker']
-                if worker_is_available(project_start, project_end, start_date, end_date, worker):
-                    form.save()
-                    return HttpResponseRedirect('/projekti/' + str(project.id) + '/delavci/')
-
-                else:
-                    context['worker_not_available'] = True
-                    return render(request, 'projects/project_assign_worker.html', context)
-            else:
-                context['date_error'] = True
-                return render(request, 'projects/project_assign_worker.html', context)
-        else:
-            context['form_not_valid'] = True
-            return render(request, 'projects/project_assign_worker.html', context)
-
-
-# Function to determine if the dates to assign a worker to a project
-# match the start and end dates of a project. 
-def dates_are_valid(project_start, project_end, start_date, end_date):
-    # Print dates
-    print('psd: {}, ped: {}, sd: {}, ed: {}'. format(project_start, project_end, start_date, end_date))
-    
-    # start_date and end_date must be between project_start and project_end
-    if project_start <= start_date <= project_end:
-        if project_start <= end_date <= project_end:
-            return True
-
-    return False
-
-
-# Function to check if worker is available
-def worker_is_available(project_start, project_end, start_date, end_date, worker):
-    already_assigned = AssignedToProject.objects.filter(worker=worker)
-    
-    # If there is no previously stored project for this worker
-    # He is automatically available
-    if len(already_assigned) < 1:
-        return True
-
-    # Comapre previous assignments to determine
-    # If he is available at chosen dates
-    else:
-        for shift in already_assigned:
-            shift_start = shift.start_date
-            shift_end = shift.end_date
-
-            if shift_start <= start_date <= shift_end:
-                return False
-            else:
-                if shift_start <= end_date <= shift_end:
-                    return False
-                else:
-                    if shift_start > start_date and shift_end < end_date:
-                        return False
-
-        return True
-
 
 # Construction site address
 @login_required
@@ -447,10 +372,19 @@ def add_anex(request, project_id):
     anex_docs = ProjectAnex.objects.filter(project=project)
     anex_num = int(len(anex_docs)) + 1
 
+    # Calculate end date to help user fill out the form
+    end_date = project.project_end_date
+    if len(anex_docs) >= 1:
+        for anex in anex_docs:
+            if anex.end > end_date:
+                end_date = anex.end
+
     if request.method == 'GET':
+
         context = {
             'form': NewAnexForm(initial={'project': project, 'anex_num': anex_num}),
-            'project': project
+            'project': project,
+            'end_date': end_date
         }
         return render(request, template, context)
 
@@ -460,7 +394,7 @@ def add_anex(request, project_id):
             start = form.cleaned_data['start']
             end = form.cleaned_data['end']
             # Check if inputed dates are after the end of project stated on the contract
-            if correct_dates(start, end, project):
+            if correct_dates(start, end, end_date):
                 form.save()
                 return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
 
@@ -479,8 +413,8 @@ def add_anex(request, project_id):
         return render(request, template, context)
 
 
-def correct_dates(start, end, project):
-    project_end = project.project_end_date
+def correct_dates(start, end, end_date):
+    project_end = end_date
     if start > project_end and end > project_end:
         return True
     else:

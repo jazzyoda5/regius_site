@@ -12,7 +12,7 @@
 }
 .body {
     margin: auto;
-    max-width: 850px;
+    width: 850px;
     background-color: white;
     padding: 30px;
     border-radius: 8px;
@@ -56,7 +56,7 @@
     margin: auto;
 }
 .search input:focus {
-    border-color: #f8dfb8;;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #ba621c;;
+    border-color: rgb(168, 168, 168);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 4px #838383;
     outline: 0 none;
 }

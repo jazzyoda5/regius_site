@@ -125,16 +125,16 @@
         </li>
         {% for anex in anex_data %}
         <li>
-          {% if anex_doc %}
+          {% if anex.doc %}
           <p>Aneks št. {{ anex.anex_num }}</p>
 
           <a
-            href="{{contract_doc.contract.url}}"
-            download="{{contract_doc.contract.url}}"
-            >{{ contract_doc.title }}.docx</a
+            href="{{anex.doc.anex_doc.url}}"
+            download="{{anex.doc.anex_doc.url}}"
+            >{{ anex.doc.title }}.docx</a
           >
           <form
-            action="/dokumenti/izbrisi-pogodba/{{contract_doc.id}}/"
+            action="/dokumenti/aneks/izbrisi/{{anex.doc.id}}/"
             method="Post"
           >
             {% csrf_token %}
@@ -159,12 +159,12 @@
           </form>
           {% else %}
           <p>Aneks št. {{ anex.anex_num }}</p>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal" id="delete-anex">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal-{{anex.id}}" id="delete-anex">
             Odstrani aneks
           </button>
           <div
               class="modal fade"
-              id="delete-modal"
+              id="delete-modal-{{anex.id}}"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"

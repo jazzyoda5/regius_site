@@ -29,7 +29,7 @@
 <h4>Nov aneks - {{ project.project_name }}</h4>
 <div class="form">
   <form method="POST"> {% csrf_token %}
-        <p class="note"><strong>Trajanje projekta</strong> : {{ project.project_start_date }} - {{ project.project_end_date }}</p>
+        <p class="note"><strong>Trajanje projekta</strong> : {{ project.project_start_date }} - {{ end_date }}</p>
 
     {% for field in form %}
         {% if field.label == 'Od' or field.label == 'Do'%}
@@ -55,7 +55,7 @@
     </div>
     {% elif form_not_valid %}
     <div class="alert alert-danger" role="alert">
-      Izpolnite vsa polja!
+      Polja niso pravilno izpolnjena!
     </div>
     {% endif %}
     <button type="submit" class="btn btn-primary">Potrdi</button>

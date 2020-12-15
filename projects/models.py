@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext as _
+from datetime import date
 
 
 class Contractor(models.Model):
@@ -56,6 +57,13 @@ class Project(models.Model):
     hourly_rate = models.DecimalField(_("urna postavka"), max_digits=5, decimal_places=2)
     # LW
     lw = models.BooleanField(_("LW"), null=True)
+    # Date added
+    pub_date = models.DateField(_("Datum vpisa"), null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.pub_date = date.today().strftime('%d.%m.%Y')
+        return super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.project_name

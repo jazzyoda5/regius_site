@@ -70,20 +70,21 @@
 .document .btn-primary:active:focus,
 .document .btn-primary:hover {
     background-color: #691c00;
-    outline-color: #ba621c;
+    outline-color: #d85408;
     box-shadow: none !important;
-    outline-color: #ba621c;
-    border-color: #ba621c;
+    outline-color: #d85408;
+    border-color: #d85408;
 }
 .document .btn-primary {
-    background-color: #ba621c;
-    outline-color: #ba621c;
-    border-color: #ba621c;
+    background-color: #d85408;
+    outline-color: #d85408;
+    border-color: #d85408;
 }
 #delete-anex {
     background-color: #f0f0f0 !important;
     border: none;
-    color: #ba621c;
+    color: #d85408;
+    margin-top: -10px;
 }
 .documents li {
     display: flex;
@@ -93,7 +94,7 @@
     padding-top: 20px;
 }
 .documents {
-    background-color: #f0f0f0 !important;
+    background-color: #e6e6e6 !important;
     min-width: 300px;
     border-radius: 8px;
     margin: 10px;
@@ -103,7 +104,7 @@
     color: gray;
 }
 .documents a {
-    color: #ba621c;
+    color: #d85408;
     padding-top: 3px;
     padding-bottom:3px;
 }

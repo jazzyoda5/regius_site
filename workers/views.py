@@ -3,11 +3,12 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from .models import *
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .forms import CreateWorkerForm, WorkerInfoForm
+from .forms import CreateWorkerForm, WorkerInfoForm, AssignedToProjectForm
 import json
 from .models import AssignedToProject
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from projects.models import ProjectAnex
 
 
 def test(request):
@@ -131,3 +132,111 @@ def delete_worker(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
     worker.delete()
     return HttpResponseRedirect('/delavci/')
+
+
+# View for assigning workers to projects
+@login_required
+def project_assign_worker(request, project_id):
+    project = Project.objects.get(id=project_id)
+    context = {
+        'project': project
+    }
+    if request.method == 'GET':
+        form = AssignedToProjectForm(initial={'project': project})
+        context['form'] = form
+        return render(request, 'projects/project_assign_worker.html', context)
+
+    elif request.method == 'POST':
+        form = AssignedToProjectForm(request.POST, initial={'project': project})
+        context['form'] = form
+
+        if form.is_valid():
+            # Store date variables
+            project_start = project.project_start_date
+            project_end = project.project_end_date
+
+            # Update end date because of anex docs
+            # Check if there is already previous anex docs created so that 
+            anex_docs = ProjectAnex.objects.filter(project=project)
+
+            # Calculate end date to help user fill out the form
+            if len(anex_docs) >= 1:
+                for anex in anex_docs:
+                    if anex.end > project_end:
+                        project_end = anex.end
+                        
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+
+            # Check if dates fit with project start and end
+            if dates_are_valid(project_start, project_end, start_date, end_date):
+                
+                # Check if worker is available
+                worker = form.cleaned_data['worker']
+                if worker_is_available(project_start, project_end, start_date, end_date, worker):
+                    form.save()
+                    return HttpResponseRedirect('/projekti/' + str(project.id) + '/delavci/')
+
+                else:
+                    context['worker_not_available'] = True
+                    return render(request, 'projects/project_assign_worker.html', context)
+            else:
+                context['date_error'] = True
+                return render(request, 'projects/project_assign_worker.html', context)
+        else:
+            context['form_not_valid'] = True
+            return render(request, 'projects/project_assign_worker.html', context)
+
+
+# Function to determine if the dates to assign a worker to a project
+# match the start and end dates of a project. 
+def dates_are_valid(project_start, project_end, start_date, end_date):
+    # Print dates
+    print('psd: {}, ped: {}, sd: {}, ed: {}'. format(project_start, project_end, start_date, end_date))
+    
+    # start_date and end_date must be between project_start and project_end
+    if project_start <= start_date <= project_end:
+        if project_start <= end_date <= project_end:
+            return True
+
+    return False
+
+
+# Function to check if worker is available
+def worker_is_available(project_start, project_end, start_date, end_date, worker):
+    already_assigned = AssignedToProject.objects.filter(worker=worker)
+    
+    # If there is no previously stored project for this worker
+    # He is automatically available
+    if len(already_assigned) < 1:
+        return True
+
+    # Comapre previous assignments to determine
+    # If he is available at chosen dates
+    else:
+        for shift in already_assigned:
+            shift_start = shift.start_date
+            shift_end = shift.end_date
+
+            if shift_start <= start_date <= shift_end:
+                return False
+            else:
+                if shift_start <= end_date <= shift_end:
+                    return False
+                else:
+                    if shift_start > start_date and shift_end < end_date:
+                        return False
+
+        return True
+
+
+def unassign_worker(request, ass_obj_id):
+    # DB object with data about assigning worker to project
+    # This is what has to be deleted
+    assignment_obj = AssignedToProject.objects.get(id=ass_obj_id)
+
+    project_id = assignment_obj.project.id
+
+    # Delete
+    assignment_obj.delete()
+    return HttpResponseRedirect('/projekti/' + str(project_id) + '/delavci/')

@@ -7,7 +7,7 @@ from projects.models import (Project,
                              ProjectContactInfo,
                              Contractor,
                              ProjectAnex)
-from .models import DocumentTemplate, ProjectDocument, ProjectContract
+from .models import DocumentTemplate, ProjectDocument, ProjectContract, ProjectAnexDoc
 import os
 from regius_site_1.settings import BASE_DIR
 from django.core.files import File
@@ -237,10 +237,12 @@ def create_anex(request, project_id, anex_id):
             context[field_name] = str(field_value)
 
         except AttributeError:
-            print('error')
             pass
+    try:
+        project_address = ProjectAdress.objects.get(project=project_id)
+    except ProjectAdress.DoesNotExist:
+        return HttpResponseRedirect('/projekti/' + str(2) + '/dodajnaslov/')
 
-    project_address = ProjectAdress.objects.get(project=project_id)
     for field in project_address._meta.get_fields():
         try:
             field_name = 'pa_' + str(field.name)
@@ -248,7 +250,6 @@ def create_anex(request, project_id, anex_id):
             context[field_name] = str(field_value)
 
         except AttributeError:
-            print('error')
             pass
 
     anex_data = ProjectAnex.objects.get(project=project, id=anex_id)
@@ -259,7 +260,6 @@ def create_anex(request, project_id, anex_id):
             context[field_name] = str(field_value)
 
         except AttributeError:
-            print('error')
             pass
     
     # Change date formats
@@ -308,3 +308,10 @@ def create_anex(request, project_id, anex_id):
     os.remove(os.path.join(BASE_DIR, 'media_cdn/media/', 'temp_doc.docx'))
 
     return HttpResponseRedirect('/projekti/' + str(project_id) + '/dokumenti/')
+
+
+def delete_anex_doc(request, anex_doc_id):
+    anex_doc = ProjectAnexDoc.objects.get(id=anex_doc_id)
+    project = anex_doc.project
+    anex_doc.delete()
+    return HttpResponseRedirect('/projekti/' + str(project.id) + '/dokumenti/')

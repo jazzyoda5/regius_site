@@ -6,5 +6,6 @@ urlpatterns = [
     path('pogodba/<int:project_id>/', views.create_contract_doc),
     path('izbrisi-projektni-list/<int:document_id>/', views.delete_project_doc),
     path('izbrisi-pogodba/<int:document_id>/', views.delete_contract_doc),
-    path('aneks/<int:project_id>/<int:anex_id>/', views.create_anex, name='create_anex')
+    path('aneks/<int:project_id>/<int:anex_id>/', views.create_anex, name='create_anex'),
+    path('aneks/izbrisi/<int:anex_doc_id>/', views.delete_anex_doc, name='delete_anex_doc'),
 ]
