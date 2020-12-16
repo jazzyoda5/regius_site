@@ -22,7 +22,7 @@ from django.db.models import Q
 
 @login_required
 def project_overview(request):
-    all_projects = Project.objects.all().order_by('pub_date')[:2]
+    all_projects = Project.objects.all().order_by('pub_date')[:15]
     context = {
         'projects': all_projects
     }

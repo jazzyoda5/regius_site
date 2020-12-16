@@ -7,8 +7,10 @@
 }
 .graph_container {
     padding: 10px;
-    border-style: solid;
-    border-color: #a0a0a0;
-    border-width: 1px;
+    background-color: #e6e6e6;
     border-radius: 10px;
+    margin-top: 3vh;
+}
+.projects-chart, .workers-chart {
+    margin-top: 1vh;
 }
