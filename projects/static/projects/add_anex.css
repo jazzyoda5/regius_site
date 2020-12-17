@@ -10,6 +10,11 @@
 .projects-nav a:hover {
     color: #d85408;
 }
+.projects-nav a:active,
+.projects-nav a:focus,
+.projects-nav a:active:focus {
+    box-shadow: none;
+}
 .container {
     margin: auto;
     max-width: 850px;

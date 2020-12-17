@@ -10,6 +10,16 @@
 .projects-nav a:hover {
     color: #ba621c;
 }
+.projects-nav a:active,
+.projects-nav a:focus,
+.projects-nav a:active:focus {
+    box-shadow: none;
+}
+.projects-nav a:active,
+.projects-nav a:focus,
+.projects-nav a:active:focus {
+    box-shadow: none;
+}
 .project_details {
     max-width: 850px;
     margin: auto;
