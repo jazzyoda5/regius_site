@@ -10,6 +10,12 @@ from datetime import date, timedelta
 def overview_page(request):
     # Get all current projects
     projects = Project.objects.filter(status='V teku')
+
+
+    # Get projects chart height
+    p_chart_height = 50 * len(projects)
+
+
     labels = []
     start_dates = []
     end_dates = []
@@ -17,12 +23,13 @@ def overview_page(request):
         labels.append(project.project_name)
         start_dates.append(project.project_start_date)
         end_dates.append(project.project_end_date)
-    print(projects)
+
     context = {
         'username': request.user,
         'labels': labels,
         'start_dates': start_dates,
-        'end_dates': end_dates
+        'end_dates': end_dates,
+        'p_chart_height': p_chart_height
     }
     return render(request, 'overview/main.html', context)
 

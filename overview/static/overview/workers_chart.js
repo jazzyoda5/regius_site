@@ -97,14 +97,13 @@ the date from django is form today
             },
           },
         ],
-        /*
         yAxes: [
           {
             ticks: {
               beginAtZero: true,
             },
           },
-        ], */
+        ], 
       },
       responsive: true,
       title: {

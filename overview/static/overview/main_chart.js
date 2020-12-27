@@ -89,6 +89,8 @@ the date from django is form today
       datasets: chart_datasets,
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       legend: {
         display: false,
       },
