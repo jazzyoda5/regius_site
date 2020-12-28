@@ -146,4 +146,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'verlicjakob0512@gmail.com'
 EMAIL_HOST_PASSWORD = email_host_password
 
-# Date
+

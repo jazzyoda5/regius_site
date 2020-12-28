@@ -108,19 +108,30 @@
 
 {% block content %}
 <div class="overview">
-  <div class="container">
+  <div class="projects-chart">
     <h4>Pregled projektov v teku</h4>
-    <div class="graph_container">
+    <div class="graph_container1" style="height: {{ p_chart_height }}px !important;">
       <canvas id="chart1"></canvas>
     <script
-        src="{% static 'overview/main_chart.js' %}" 
-      ></script>
+  src="{% static 'overview/main_chart.js' %}" 
+></script>
+    </div>
+  </div>
+  <hr>
+  <div class="workers-chart">
+  <h4>Pregled prostih delavcev</h4>
+    <div class="graph_container">
+      <canvas id="chart2"></canvas>
+      <script
+    src="{% static 'overview/workers_chart.js' %}" 
+  ></script>
     </div>
   </div>
 </div>
+
 {% endblock %}
 
-
+    
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -136,6 +147,7 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
+    
   {% block add_js %} 
   {% endblock %}
   </body>

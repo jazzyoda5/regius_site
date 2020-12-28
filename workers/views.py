@@ -9,6 +9,7 @@ from .models import AssignedToProject
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from projects.models import ProjectAnex
+from datetime import date, timedelta
 
 
 def test(request):
@@ -240,3 +241,24 @@ def unassign_worker(request, ass_obj_id):
     # Delete
     assignment_obj.delete()
     return HttpResponseRedirect('/projekti/' + str(project_id) + '/delavci/')
+
+"""
+def update_availability(worker, start_date, end_date):
+    # Get availability for the worker
+    # If it is the first task he is assigned to create an availability object
+    try:
+        avail_obj = WorkerAvailability.objects.get(worker=worker)
+    except WorkerAvailability.DoesNotExist:
+        avail_str = ''
+        for i in range(365):
+            avail_str += '1'
+        avail_obj = WorkerAvailability(worker=worker, availability_str=avail_str)
+        avail_obj.save()
+
+    date = date.today()
+    num = 0
+    for i in avai:
+        if date
+"""
+
+

@@ -55,7 +55,7 @@ the date from django is form today
       let days2 = getDaysFromToday(end_dates[i]);
 
       let set = {
-        label: "Ime projekta",
+        label: labels[i],
         backgroundColor: "#253812b0",
         borderColor: "#253812b0",
         fill: false,
@@ -89,6 +89,8 @@ the date from django is form today
       datasets: chart_datasets,
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       legend: {
         display: false,
       },
@@ -107,7 +109,7 @@ the date from django is form today
             position: "left",
             display: true,
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: "Projekti",
             },
             ticks: {
