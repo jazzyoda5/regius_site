@@ -61,8 +61,6 @@ class Project(models.Model):
     pub_date = models.DateField(_("Datum vpisa"), null=True)
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.pub_date = date.today().strftime('%d.%m.%Y')
         return super(Project, self).save(*args, **kwargs)
 
     def __str__(self):

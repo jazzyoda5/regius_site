@@ -67,6 +67,7 @@
     border: none;
     box-shadow: none;
 }
+
 /* .document .btn-primary:focus,
 .document .btn-primary:active:focus,
 .document .btn-primary:hover */
@@ -91,7 +92,7 @@
     border-color: #d85408;
 }
 #delete-anex {
-    background-color: #f0f0f0 !important;
+    background-color: #f0f0f000 !important;
     border: none;
     color: #d85408;
     margin-top: -10px;
